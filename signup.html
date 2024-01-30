@@ -1,85 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <script src="./js/script.js"></script>
+    <script src="./js/signup.js"></script>
+    <script src="./js/form.js"></script>
+    <script src="./js/generalelements.js"></script>
+    <script src="./js/contacts.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+    <link rel="icon" href="./assets/img/join_logo_black.png" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign up</title>
-  <script src="./js/script.js"></script>
-  <script src="./js/signup.js"></script>
-  <script src="./js/form.js"></script>
-  <script src="./js/generalelements.js"></script>
-  <script src="js/contacts.js"></script>
-  <link rel="stylesheet" href="./styles/style.css" />
-  <link rel="stylesheet" href="./styles/login.css" />
-  <link rel="icon" href="./assets/img/join_logo_black.png" />
-</head>
-
-<body>
-  <header id="header">
-    <img src="./assets/img/join_logo_black.png" alt="Join logo" class="img-large" id="login-logo-static" />
-  </header>
-  <main>
-    <div class="content" id="content">
-      <div class="heading-container" id="heading-container">
-        <a href="/Join/login.html" class="back-navigation-link"><img src="./assets/img/arrow-left-line.png"
-            alt="navigate to previous screen" class="back-navigation-img" id="back-navigation-img" /></a>
-        <h1 id="heading">Sign up</h1>
-      </div>
-      <div class="horizontal-separator"></div>
-      <div id="form">
-        <form id="signup-form">
-          <div class="input">
-            <input required type="text" placeholder="Name" id="name-input" /><img src="./assets/img/person.png"
-              class="input-icon" alt="" />
-          </div>
-          <div class="error-container">
-            <div class="error-message" id="name-input-error"></div>
-          </div>
-          <div class="input">
-            <input required type="email" placeholder="Email" id="email-input" /><img src="./assets/img/mail.png"
-              class="input-icon" alt="" />
-          </div>
-          <div class="error-container">
-            <div class="error-message" id="email-input-error"></div>
-          </div>
-          <div class="input">
-            <input required id="password-input" type="password" placeholder="Password" />
-            <img src="./assets/img/lock.png" class="input-icon" alt="" id="password-icon" />
-          </div>
-          <div class="error-container">
-            <div class="error-message" id="password-input-error"></div>
-          </div>
-          <div class="input">
-            <input required id="confirm-password-input" type="password" placeholder="Confirm Password" />
-            <img src="./assets/img/lock.png" class="input-icon" alt="" id="confirm-password-icon" />
-          </div>
-          <div class="error-container">
-            <div class="error-message" id="confirm-password-input-error"></div>
-          </div>
-          <div class="d-flex align-items-center text-checkbox" id="accept-privacy-policy-container">
-            <img src="./assets/img/checkbox-unchecked.svg" id="accept-privacy-policy" class="checkbox" />
-            <span id="accept-policy">I accept the
-              <a href="/Join/privacy_policy.html" class="text-link"> Privacy policy</a></span>
-          </div>
-          <div id='accept-privacy-policy-hint' class='error-container text-align-center'>Accept privacy policy to sign
-            up</div>
-          <div id="notification-ref" class="login-buttons p-relative">
-            <button id="sign-up-btn" class="btn btn-primary" type="submit">
-              Sign up
-            </button>
-            <div id="notification" class="notification">
-              You signed up successfully
+  <body>
+    <header id="header">
+      <img
+        src="./assets/img/join_logo_black.png"
+        alt="Join logo"
+        class="img-large"
+        id="login-logo-static"
+      />
+    </header>
+    <main>
+      <div class="content" id="content">
+        <div class="heading-container" id="heading-container">
+          <a href="./login.html" class="back-navigation-link"
+            ><img
+              src="./assets/img/arrow-left-line.png"
+              alt="navigate to previous screen"
+              class="back-navigation-img"
+              id="back-navigation-img"
+          /></a>
+          <h1 id="heading">Sign up</h1>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div id="form">
+          <form id="signup-form">
+            <div class="input">
+              <input
+                required
+                type="text"
+                placeholder="Name"
+                id="name-input"
+              /><img src="./assets/img/person.png" class="input-icon" alt="" />
             </div>
-          </div>
-        </form>
+            <div class="error-container">
+              <div class="error-message" id="name-input-error"></div>
+            </div>
+            <div class="input">
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                id="email-input"
+              /><img src="./assets/img/mail.png" class="input-icon" alt="" />
+            </div>
+            <div class="error-container">
+              <div class="error-message" id="email-input-error"></div>
+            </div>
+            <div class="input">
+              <input
+                required
+                id="password-input"
+                type="password"
+                placeholder="Password"
+              />
+              <img
+                src="./assets/img/lock.png"
+                class="input-icon"
+                alt=""
+                id="password-icon"
+              />
+            </div>
+            <div class="error-container">
+              <div class="error-message" id="password-input-error"></div>
+            </div>
+            <div class="input">
+              <input
+                required
+                id="confirm-password-input"
+                type="password"
+                placeholder="Confirm Password"
+              />
+              <img
+                src="./assets/img/lock.png"
+                class="input-icon"
+                alt=""
+                id="confirm-password-icon"
+              />
+            </div>
+            <div class="error-container">
+              <div
+                class="error-message"
+                id="confirm-password-input-error"
+              ></div>
+            </div>
+            <div
+              class="d-flex align-items-center text-checkbox"
+              id="accept-privacy-policy-container"
+            >
+              <img
+                src="./assets/img/checkbox-unchecked.svg"
+                id="accept-privacy-policy"
+                class="checkbox"
+              />
+              <span id="accept-policy"
+                >I accept the
+                <a href="./privacy_policy.html" class="text-link">
+                  Privacy policy</a
+                ></span
+              >
+            </div>
+            <div
+              id="accept-privacy-policy-hint"
+              class="error-container text-align-center"
+            >
+              Accept privacy policy to sign up
+            </div>
+            <div id="notification-ref" class="login-buttons p-relative">
+              <button id="sign-up-btn" class="btn btn-primary" type="submit">
+                Sign up
+              </button>
+              <div id="notification" class="notification">
+                You signed up successfully
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  </main>
-  <footer>
-    <a href="/Join/privacy_policy.html" target="_blank" class="footer-link">Privacy Policy</a><a
-      href="/Join/legal_notes.html" target="_blank" class="footer-link">Legal notice</a>
-  </footer>
-</body>
-
+    </main>
+    <footer>
+      <a href="/Join/privacy_policy.html" target="_blank" class="footer-link"
+        >Privacy Policy</a
+      ><a href="/Join/legal_notes.html" target="_blank" class="footer-link"
+        >Legal notice</a
+      >
+    </footer>
+  </body>
 </html>
