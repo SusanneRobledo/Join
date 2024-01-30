@@ -1,0 +1,47 @@
+<header id="desktop_header" class="d-flex">
+    <p>Kanban Project Management Tool</p>
+    <div class="Header_rightArea_d d-flex">
+
+        <img id="header_help_icon_d" src="/Join/assets/img/header_help_icon.png" alt="?" onclick="getHelp()">
+
+        <svg id="header_svg" width="56" height="56" viewBox="0 0 56 56" fill="none"
+            onclick="flyInMenu('header_menu_id', event)">
+            <circle cx="28" cy="28" r="26.5" stroke="#2A3647" stroke-width="3" />
+            <text id="svg_text" x="50%" y="30" text-anchor="middle" fill="blue" alignment-baseline=" middle">
+        </svg>
+    </div>
+    <span id="header_menu_id" class="Header_menu d-flex flex-direction-col float_in_menu">
+        <a class="MenuButton" href="#" onclick="toLegal()">Legal Notice</a>
+        <a class="MenuButton" href="#" onclick="toPrivacy()">Privacy Policy</a>
+        <a class="MenuButton" href="#" onclick="logOut()">Log out</a>
+    </span>
+</header>
+
+<aside id="desktop_sider" class="d-flex flex-direction-col">
+    <a href="/Join/summary.html">
+        <img class="Sider_Logo_d" src="/Join/assets/img/join_logo_white.png" alt="">
+    </a>
+    <span id="sider_menu_points" class="Sider_main_links_d">
+        <a href="/Join/summary.html" id="summaryID" class="d-flex Sider_footer_links MenuButton">
+            <img class="Sider_Icons_d" src="/Join/assets/img/sider_summary_icon.png" alt="">
+            <p> Summary</p>
+        </a>
+        <a href="/Join/add_task.html" id="add_taskID" class="d-flex Sider_footer_links MenuButton">
+            <img class="Sider_Icons_d" src="/Join/assets/img/sider_addTask_icon.png" alt="">
+            <p> Add Task</p>
+        </a>
+        <a href="/Join/board.html" id="boardID" class="d-flex Sider_footer_links MenuButton">
+            <img class="Sider_Icons_d" src="/Join/assets/img/sider_board_icon.png" alt="">
+            <p> Board</p>
+        </a>
+        <a href="/Join/contacts.html" id="contactsID" class="d-flex Sider_footer_links MenuButton">
+            <img class="Sider_Icons_d" src="/Join/assets/img/sider_contacts_icon.png" alt="">
+            <p> Contacts</p>
+        </a>
+    </span>
+    <span id="sider_blocker" class="Sider_main_links_d d-none"></span>
+    <span class="Sider_lower_links_d d-flex flex-direction-col p-relative">
+        <a href="#" onclick="toPrivacy()">Privacy Police</a>
+        <a href="#" onclick="toLegal()">Legal notice</a>
+    </span>
+</aside>

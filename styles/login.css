@@ -1,0 +1,267 @@
+:root {
+  --logo-target-padding: 2em;
+}
+
+header {
+  padding: var(--logo-target-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+#login-logo-static.splash-active {
+  visibility: hidden;
+}
+
+#login-logo,
+#login-logo-static {
+  transform: none;
+  width: 64px;
+  object-fit: contain;
+}
+
+#login-logo.splash-active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.56);
+  transition: 1s;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+#splash-login-bg {
+  background-color: var(--secondary-bg-color);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: 1s;
+}
+
+#splash-login-bg.splash-moving {
+  background-color: transparent;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#accept-policy {
+  display: flex; 
+  width: 240px
+}
+
+#accept-policy a {
+  margin-left: 5px;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5em;
+  padding-block-end: 2em;
+  font-size: var(--fs-small);
+  color: var(--decent-color);
+}
+
+.footer-link {
+  min-width: 150px;
+}
+
+footer a:hover {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.horizontal-separator {
+  background-color: var(--accent-color);
+  width: 88px;
+  height: 3px;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 3rem;
+  background-color: white;
+  border-radius: 1.875em;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.03);
+}
+
+.back-navigation-link {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+}
+
+/*Log in form*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(calc(320px - 3rem), 60vw, 652px);
+}
+
+input,
+textarea,
+select {
+  border: none;
+  outline: none;
+  font-size: unset;
+  font-family: unset;
+  min-width: 0;
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 422px;
+  width: 100%;
+  padding: 0.5em;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 0.3em;
+  margin-block-start: 1em;
+}
+
+.input:focus-within {
+  border-color: var(--accent-color);
+}
+
+.error-container {
+  max-width: 422px;
+  width: 100%;
+  color: var(--error-color-subtle);
+  font-size: 13px;
+  margin-top: 0.5em;
+}
+
+.is-validated .input:has(input:invalid),
+.is-validated .input:has(textarea:invalid) {
+  border: 1px solid var(--error-color);
+}
+
+::placeholder {
+  color: lightgray;
+}
+
+.input>input {
+  flex: 1;
+}
+
+.input-icon {
+  width: 24px;
+  object-fit: contain;
+}
+
+.forgot-password {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  margin-block: 2em;
+  padding-inline: 0.5em;
+  font-size: var(--fs-small);
+}
+
+.text-checkbox {
+  font-size: var(--fs-small);
+  margin-block: 2em;
+}
+
+.text-link:hover {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: var(--fs-taller);
+  margin-block: 0.5em 0.25em;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+form .btn {
+  width: 180px;
+}
+
+.login-sign-up-banner {
+  margin-block: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.login-sign-up-banner-desktop {
+  display: none;
+  margin-block: 0;
+}
+
+.login-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding-block-end: 1em;
+}
+
+.error-container+.login-buttons {
+  margin-block-start: 1.5em;
+}
+
+@media (min-width: 820px) {
+
+  #login-logo,
+  #login-logo-static {
+    width: 100px;
+  }
+
+  #splash-login-bg {
+    background-color: white;
+  }
+
+  .login-sign-up-banner-mobile {
+    display: none;
+  }
+
+  .login-sign-up-banner-desktop {
+    display: flex;
+  }
+
+  .forgot-password {
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+  }
+
+  form .btn {
+    width: fit-content;
+  }
+
+  #login-logo.splash-active {
+    transform: translate(-50%, -50%) scale(2.74);
+  }
+}
+
+#login-logo.splash-moving {
+  top: var(--logo-target-padding);
+  left: var(--logo-target-padding);
+  transform: translate(0, 0);
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" href="./assets/img/join_logo_black.png" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+    <script defer src="./js/script.js"></script>
+    <script defer src="./js/login.js"></script>
+    <script defer src="./js/generalelements.js"></script>
+    <script defer src="./js/startanimation.js"></script>
+    <script defer src="./js/form.js"></script>
+  </head>
+
+  <body>
+    <header id="header">
+      <img
+        src="./assets/img/join_logo_black.png"
+        alt="Join logo"
+        class="img-large"
+        id="login-logo-static"
+      />
+      <div
+        id="sign-up-container"
+        class="login-sign-up-banner login-sign-up-banner-desktop"
+      >
+        <span>Not a Join user?</span
+        ><a href="./signup.html" class="btn btn-primary sign-up-btn">Sign up</a>
+      </div>
+    </header>
+    <main>
+      <div class="content" id="content">
+        <div class="heading-container" id="heading-container">
+          <h1 id="heading">Log in</h1>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div id="form">
+          <form id="login-form" action="./summary.html" class="form login-form">
+            <div class="input">
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                id="email-input"
+              /><img src="./assets/img/mail.png" class="input-icon" alt="" />
+            </div>
+            <div class="error-container">
+              <div class="error-message" id="email-input-error"></div>
+            </div>
+            <div class="input">
+              <input
+                required
+                id="password-input"
+                type="password"
+                placeholder="Password"
+              />
+              <img
+                src="./assets/img/lock.png"
+                class="input-icon"
+                alt=""
+                id="password-icon"
+              />
+            </div>
+            <div class="error-container">
+              <div class="error-message" id="password-input-error"></div>
+            </div>
+            <div class="forgot-password">
+              <a
+                href="./forgotpassword.html"
+                class="text-link"
+                style="min-width: 180px"
+                >Forgot my password</a
+              >
+              <div class="d-flex align-items-center" id="remember-me-container">
+                <img
+                  src="./assets/img/checkbox-unchecked.svg"
+                  id="remember-me"
+                  class="checkbox"
+                />
+                <span>Remember me</span>
+              </div>
+            </div>
+            <div class="login-buttons">
+              <button class="btn btn-primary" type="submit">Log in</button>
+              <button type="button" class="btn btn-secondary">
+                <a id="guest-login-btn" href="./summary.html?guestuser=true"
+                  >Guest Log in</a
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        id="sign-up-container"
+        class="login-sign-up-banner login-sign-up-banner-mobile"
+      >
+        <span>Not a Join user?</span
+        ><a href="./signup.html" class="btn btn-primary sign-up-btn">
+          Sign up
+        </a>
+      </div>
+    </main>
+    <footer>
+      <a href="/Join/privacy_policy.html" target="_blank" class="footer-link"
+        >Privacy Policy</a
+      ><a href="/Join/legal_notes.html" target="_blank" class="footer-link"
+        >Legal notice</a
+      >
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <link rel="icon" href="./assets/img/join_logo_black.png" />
+  <link href="/Join/board.html" rel="import" />
+  <script defer src="./js/script.js"></script>
+  <script defer src="./js/board.js"></script>
+  <script defer src="./js/summary.js"></script>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/summary.css" />
+</head>
+
+<body onload="initTemplates(), initSummary()">
+  <div id="desktop-template" include-templates="assets/templates/desktop_template.html"></div>
+  <div id="mobile-template" include-templates="assets/templates/mobile_template.html"></div>
+
+  <main class="summary-main">
+    <div class="summary-content">
+      <div class="summary-heading">
+        <h1>Summary</h1>
+        <div class="seperator-desktop"></div>
+        <span class="subheadline">Everything in a nutshell!</span>
+        <div class="seperator-mobile"></div>
+      </div>
+
+      <article class="summary-desktop-layout">
+        <div class="card-container">
+          <div class="top-row">
+            <a href="/Join/board.html" class="tasks-board flex-direction-col">
+              <div class="number" id="tasksCount">0</div>
+              <span>Tasks in<br />Board</span>
+            </a>
+            <a href="/Join/board.html" class="tasks-progress flex-direction-col">
+              <div class="number" id="progressCount">0</div>
+              <span>Tasks In<br />Progress</span>
+            </a>
+            <a href="/Join/board.html" class="tasks-feedback flex-direction-col">
+              <div class="number" id="feedbackCount">0</div>
+              <span>Awaiting<br />feedback</span>
+            </a>
+          </div>
+
+          <a href="/Join/board.html" class="middle-row">
+            <div class="d-flex gap-medium align-items-center">
+              <img src="./assets/img/sum_urgent_icon.png" />
+              <div class="d-flex flex-direction-col">
+                <div class="number" id="urgentCount">0</div>
+                <span>Urgent</span>
+              </div>
+            </div>
+            <div class="seperator-grey"></div>
+            <div class="text-align-left">
+              <div id="deadline"></div>
+              <span>Upcoming Deadline</span>
+            </div>
+          </a>
+
+          <div class="bottom-row">
+            <a href="/Join/board.html" class="tasks-todo"
+              onmouseover="changeIcon('todoIcon', 'sum_todo_icon_white.svg')"
+              onmouseout="changeIcon('todoIcon', 'sum_todo_icon.png')">
+              <img id="todoIcon" src="./assets/img/sum_todo_icon.png" />
+              <div class="d-flex flex-direction-col">
+                <div class="number" id="todoCount">0</div>
+                <span>To-do</span>
+              </div>
+            </a>
+            <a class="tasks-done" onmouseover="changeIcon('doneIcon', 'sum_done_icon_white.svg')"
+              onmouseout="changeIcon('doneIcon', 'sum_done_icon.png')">
+              <img id="doneIcon" src="./assets/img/sum_done_icon.png" />
+              <div class="d-flex flex-direction-col">
+                <div class="number" id="doneCount">0</div>
+                <span>Done</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="helloPageDesktop" class="">
+          <span id="greetingDesktop"></span>
+          <h1 id="userNameDesktop" class="blue-text"></h1>
+        </div>
+      </article>
+    </div>
+  </main>
+</body>
+
+</html>

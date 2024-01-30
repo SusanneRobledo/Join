@@ -1,0 +1,425 @@
+:root {
+  --header-height: 80px;
+  --footer-height: 80px;
+  --nav-width: 0;
+}
+
+@media (min-width: 820px) {
+  :root {
+    --header-height: 96px;
+    --footer-height: 0;
+    --nav-width: 232px;
+  }
+}
+
+header {
+  z-index: 4;
+}
+
+#desktop_sider {
+  z-index: 4;
+}
+
+main {
+  margin-block: var(--header-height);
+  margin-inline-start: var(--nav-width);
+  display: unset;
+  padding-inline: 2rem;
+}
+
+.main-header {
+  text-align: start;
+  position: sticky;
+  top: var(--header-height);
+  background-color: var(--subtle-bg-color);
+  padding-block-start: 1em;
+  margin: 0;
+  z-index: 3;
+}
+
+.vertical-separator {
+  width: 1px;
+  background-color: #d1d1d1;
+}
+
+form {
+  display: block;
+  margin-inline: auto;
+  width: unset;
+  max-width: 440px;
+}
+
+@media (min-width: 1200px) {
+  form {
+    max-width: min-content;
+  }
+
+  .form-controls-all {
+    display: flex;
+    justify-content: space-between;
+    gap: 3em;
+  }
+
+  .vertical-separator {
+    display: block;
+  }
+
+  .form-control {
+    width: 30vw;
+  }
+}
+
+label,
+.label {
+  margin-block-start: 1.5em;
+  display: block;
+}
+
+.select-options-container {
+  padding: 1em 0.5em 0.5em;
+  margin: 0;
+  margin-block-start: -1em;
+  background-color: white;
+  border-bottom-left-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+  position: relative;
+}
+
+.select-options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.select-options li {
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.select-options li + li {
+  margin-block-start: 0.5em;
+}
+
+.input {
+  margin-block-start: 0.5em;
+  max-width: unset;
+}
+
+.select-input,
+.select-input * {
+  cursor: pointer;
+}
+
+.select-input {
+  margin-block-end: 0;
+  position: relative;
+}
+
+.input-radio {
+  background-color: var(--subtle-bg-color);
+  border: none;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radio-button.prio-urgent:has(input[type='radio']:checked) {
+  background-color: #ff3d00;
+  color: white;
+}
+
+.radio-button.prio-medium:has(input[type='radio']:checked) {
+  background-color: #ffa800;
+  color: white;
+}
+
+.radio-button.prio-low:has(input[type='radio']:checked) {
+  background-color: #7ae229;
+  color: white;
+}
+
+.radio-button:has(input[type='radio']:checked) path {
+  fill: white;
+}
+
+.radio-button {
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.radio-button:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 200ms;
+}
+
+.radio-button > label {
+  cursor: pointer;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+input[type='radio'] {
+  appearance: none;
+  margin: 0;
+}
+
+textarea {
+  width: 100%;
+  height: 4em;
+  resize: none;
+  overflow: auto;
+}
+
+.assigned-to-options {
+  max-height: 13em;
+  overflow: auto;
+}
+
+.assign-to-li {
+  display: flex;
+  align-items: center;
+  border-radius: 0.3em;
+  padding: 0.5em;
+}
+
+.select-options .assign-to-li + .assign-to-li {
+  margin: 0;
+}
+
+.assign-to-li-name {
+  flex: 1;
+  margin-inline-start: 1em;
+}
+
+.selected {
+  color: white;
+  background-color: var(--secondary-bg-color);
+}
+
+.search-active {
+  cursor: unset;
+}
+
+.subtasks-list {
+  padding-inline-start: 0.5em;
+}
+
+.subtask {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  min-height: 50px;
+}
+
+.input input {
+  cursor: inherit;
+}
+
+.subtask + .subtask {
+  margin-block-start: 0.5em;
+}
+
+.subtask input {
+  background-color: transparent;
+  flex: 1;
+}
+
+.subtask-edit {
+  background-color: white;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.bullet-icon {
+  margin-inline-end: 0.5em;
+}
+
+.subtask-edit .bullet-icon {
+  display: none;
+}
+
+.subtask:not(.subtask-edit):hover {
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 0.7em;
+}
+
+.subtask:not(.subtask-edit):hover input{
+  cursor: default;
+}
+
+.subtask:not(.subtask-edit):hover .subtask-read-icons {
+  display: block;
+}
+
+.subtask-edit .subtask-read-icons {
+  display: none;
+}
+
+li:not(.subtask-edit) .subtask-edit-icons {
+  display: none;
+}
+
+.subtask-icons {
+  margin-inline-start: auto;
+}
+
+form .btn-text-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 0.75em 1em;
+  font-size: var(--fs-normal);
+  width: 100%;
+}
+
+form .btn-create-task {
+  width: unset;
+  gap: 4px;
+}
+
+.btn-secondary.btn-text-icon {
+  margin-inline-start: auto;
+  font-weight: normal;
+  width: fit-content;
+  gap: 4px;
+}
+
+.btn-secondary.btn-text-icon:hover path {
+  stroke: var(--accent-color);
+  transition: ease-in-out 100ms;
+}
+
+.create-btn-container {
+  display: flex;
+  justify-content: end;
+  gap: 1em;
+  padding-block: 1em;
+  background-color: var(--subtle-bg-color);
+  position: sticky;
+  bottom: var(--footer-height);
+  z-index: 3;
+}
+
+#mobile-template {
+  z-index: 3;
+}
+
+footer {
+  padding: unset;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  border-radius: 1em;
+}
+
+dialog h1,
+dialog p {
+  text-align: unset;
+}
+
+dialog h1 {
+  margin-block-start: 2em;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+dialog button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+dialog .user-icn {
+  display: block;
+  margin-block-start: -10%;
+  margin-inline: auto;
+  transform: translate(0, 50%);
+}
+
+dialog form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5em;
+  margin: 0;
+}
+
+dialog form .close-icn {
+  position: absolute;
+  top: 1em;
+  right: 0.5em;
+}
+
+dialog form .btn-text-icon {
+  width: fit-content;
+  margin-block: 1em 2em;
+  margin-inline: auto;
+}
+
+.form-header {
+  padding-inline: 1rem;
+  background-color: var(--primary-bg-color);
+  color: white;
+  width: 100%;
+}
+
+.form-main {
+  margin-block-start: calc(60px + 1em);
+  padding-inline: 1rem;
+}
+
+dialog form h1 {
+  background-color: inherit;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 820px) {
+  dialog {
+    max-width: unset;
+  }
+
+  dialog form {
+    flex-direction: row;
+    max-width: unset;
+  }
+
+  dialog .form-header {
+    min-height: 500px;
+    padding-inline: 2em;
+  }
+
+  dialog .form-main {
+    margin: 0;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+}
