@@ -292,7 +292,7 @@ function saveDocName() {
  */
 function getHelp() {
   saveDocName();
-  window.location.href = ".//help.html";
+  window.location.href = "./help.html";
 }
 
 /** Saves current page and leads to legal notes. */
@@ -317,7 +317,7 @@ function backToOrigin() {
     let test = JSON.parse(originSideFromLocalStorage);
     originSide = test;
     localStorage.removeItem(originSide);
-    window.location.href = "./" + originSide + ".html";
+    window.location.href = originSide + ".html";
   }
 }
 

@@ -138,7 +138,7 @@ function activateSearchInput(e) {
 function deactivateSearchInput(e) {
   try {
     e.stopPropagation();
-  } catch { }
+  } catch {}
   formControl = document.getElementById("assigned-to-form-control");
   const input = formControl.querySelector("input");
   const inputContainer = formControl.querySelector(".input");
@@ -266,7 +266,7 @@ async function orderTasks(newTask) {
   if (selectedTask === null) {
     taskList.push(newTask);
     await setItemInBackend("taskList", JSON.stringify(taskList));
-    showNotification("notification", "/Join/board.html");
+    showNotification("notification", "/board.html");
   } else {
     taskList[getTaskIndexByID(selectedTask.id)] = newTask;
     task = newTask;

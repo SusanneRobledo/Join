@@ -69,7 +69,7 @@ function proceedLogin(user) {
     localStorage.setItem("loggedIn", "false");
   }
   sessionStorage.setItem("activeUser", JSON.stringify(user));
-  window.location.href = "/Join/summary.html";
+  window.location.href = "./summary.html";
 }
 
 /**validates if entered email address exists in users list.

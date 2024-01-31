@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <script src="js/script.js"></script>
+    <script src="js/contacts.js"></script>
+    <link rel="icon" href="./assets/img/join_logo_black.png" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/contacts.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join</title>
-  <script src="js/script.js"></script>
-  <script src="js/contacts.js"></script>
-  <link rel="icon" href="./assets/img/join_logo_black.png" />
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="styles/contacts.css" />
-  <link rel="stylesheet" href="./styles/login.css" />
-</head>
+  <body onload="initTemplates(), showContacts()">
+    <div
+      id="desktop-template"
+      include-templates="assets/templates/desktop_template.html"
+    ></div>
+    <div
+      id="mobile-template"
+      include-templates="assets/templates/mobile_template.html"
+    ></div>
 
-<body onload="initTemplates(), showContacts()">
-  <div id="desktop-template" include-templates="assets/templates/desktop_template.html"></div>
-  <div id="mobile-template" include-templates="assets/templates/mobile_template.html"></div>
+    <div class="d-flex">
+      <main class="Main_container d-flex flex-direction-col">
+        <button
+          class="Primary_contacts_btn btn btn-primary d-flex"
+          onclick="startAddContact()"
+        >
+          <t>Add new contact</t>
+          <img src="assets/img/contacts_newContact_icon.png" alt="+" />
+        </button>
+        <article
+          id="contacts_list"
+          class="d-flex flex-direction-col align-items-center"
+        >
+          <div id="userDiv"></div>
+          <div id="ListDiv"></div>
 
-  <div class="d-flex">
-    <main class="Main_container d-flex flex-direction-col">
-      <button class="Primary_contacts_btn btn btn-primary d-flex" onclick="startAddContact()">
-        <t>Add new contact</t>
-        <img src="assets/img/contacts_newContact_icon.png" alt="+" />
-      </button>
-      <article id="contacts_list" class="d-flex flex-direction-col align-items-center">
-        <div id="userDiv"></div>
-        <div id="ListDiv"></div>
-
-        <!-- <figure class="letter_div">A</figure>
+          <!-- <figure class="letter_div">A</figure>
                 <figure class="seperate_div"></figure>
                 <span id="contact_div0" class="Contact_div d-flex align-items-center" onclick="openContact(0)">
                     <div class="Initiald_svg_div">
@@ -41,19 +52,19 @@
                         <p class="Mail_text">anton@gmail.com</p>
                     </div>
                 </span> -->
-      </article>
-    </main>
+        </article>
+      </main>
 
-    <section id="contacts_Display_big">
-      <span class="side_header d-flex align-items-center">
-        <h1>Contacts</h1>
-        <div class="Vertical_stroke Divider Hide_at_980"></div>
-        <p class="Hide_at_980">Better with a team</p>
-        <div class="Horizontal_stroke Divider"></div>
-      </span>
+      <section id="contacts_Display_big">
+        <span class="side_header d-flex align-items-center">
+          <h1>Contacts</h1>
+          <div class="Vertical_stroke Divider Hide_at_980"></div>
+          <p class="Hide_at_980">Better with a team</p>
+          <div class="Horizontal_stroke Divider"></div>
+        </span>
 
-      <article id="contacts_stage">
-        <!-- <span class="Stage_head d-flex align-items-center">
+        <article id="contacts_stage">
+          <!-- <span class="Stage_head d-flex align-items-center">
                     <div id="initial_ball_big" class="d-flex">AM</div>
                     <div id="stage_head_right">
                         <p id="contact_name">Anton Mayer</p>
@@ -76,73 +87,134 @@
                     <p> <b>Phone </b></p>
                     <p id="contact_phone">+4922222222</p>
                 </span>-->
-      </article>
-      <button id="c_stage_mobCombi_btn" class="Primary_contacts_btn btn-primary btn d-flex"
-        onclick="openMobCombiMenu()">
-        <img src="assets/img/contacts_mobCombi_icon.png" alt=":" />
-      </button>
-    </section>
-    <div id="mobile_contacts_menu" class="d-flex flex-direction-col float_in_menu">
-      <a id="mob_cont_menu_Edit" href="#" class="mcm_pint">Edit Contact</a>
-      <a id="mob_cont_menu_Delete" href="#" class="mcm_pint">Delete Contact</a>
-    </div>
-    <div id="BlockDiv" onclick="closeMobCombMenu()"></div>
-  </div>
-  <div id="shader_div"></div>
-
-  <div id="delete_question" class="align-items-center">
-    <div class="align-items-center">
-      <p>Do you really want to delete <j id="show_deleting_name"></j>?</p>
-      <div id="" class="delete_btn_div">
-        <button class="btn btn-secondary" onclick="closeContactProcess('delete_question')">
-          Cancel
+        </article>
+        <button
+          id="c_stage_mobCombi_btn"
+          class="Primary_contacts_btn btn-primary btn d-flex"
+          onclick="openMobCombiMenu()"
+        >
+          <img src="assets/img/contacts_mobCombi_icon.png" alt=":" />
         </button>
-        <button id="deleteBtn" class="btn btn-primary">Confirm</button>
+      </section>
+      <div
+        id="mobile_contacts_menu"
+        class="d-flex flex-direction-col float_in_menu"
+      >
+        <a id="mob_cont_menu_Edit" href="#" class="mcm_pint">Edit Contact</a>
+        <a id="mob_cont_menu_Delete" href="#" class="mcm_pint"
+          >Delete Contact</a
+        >
       </div>
+      <div id="BlockDiv" onclick="closeMobCombMenu()"></div>
     </div>
-  </div>
+    <div id="shader_div"></div>
 
-  <div id="overProcess_div">
-    <div id="contactProcess_div" class="Contact_proccess_div p-relative d-flex align-items-center">
-      <button class="Close_btn" onclick="closeContactProcess('overProcess_div')">
-        <img src="assets/img/cancel_icon_black.png" alt="X" />
-      </button>
-      <figure id="cProcess_sider">
-        <img id="cProcess_logo" src="assets/img/join_logo_white.png" alt="" />
-        <h1 id="cProcess_h1"></h1>
-        <p id="cProcess_p">Tasks are better with a team!</p>
-        <div class="Underscore_blue"></div>
-      </figure>
-      <div id="cProcess_ball" class="big_ball d-flex" style="background-color: #d1d1d1" class="d-flex">
-        <img id="cProcess_img" src="assets/img/contacts_emptyC_icon.png" alt="" />
-      </div>
-      <form id="mainForm" action="#" onsubmit="startContactCreation()" class="form">
-        <div class="input">
-          <input required type="text" placeholder="Firstname Lastname" id="name-input" pattern="^\S+\s\S+$" />
-          <img src="./assets/img/contacts_AddName_icon.png" class="input-icon" alt="" />
-        </div>
-        <div class="input">
-          <input required type="email" placeholder="Email" id="email-input" />
-          <img src="./assets/img/contacts_AddMail_icon.png" class="input-icon" alt="" />
-        </div>
-        <div class="input">
-          <input required type="text" placeholder="Phone Number" id="phone-input"
-            onkeypress="return isNumberKey(event)" />
-          <img src="./assets/img/contacts_AddPhone_icon.png" class="input-icon" alt="" />
-        </div>
-        <div class="form_btn_div d-flex align-items-center">
-          <button id="contacts_form_cancel_btn" class="btn btn-secondary Cancel_btn" type="reset">
+    <div id="delete_question" class="align-items-center">
+      <div class="align-items-center">
+        <p>Do you really want to delete <j id="show_deleting_name"></j>?</p>
+        <div id="" class="delete_btn_div">
+          <button
+            class="btn btn-secondary"
+            onclick="closeContactProcess('delete_question')"
+          >
             Cancel
-            <img src=" assets/img/cancel_icon_black.png" alt="" />
           </button>
-          <button id="contacts_form_submit_btn" class="btn btn-primary align-items-center d-flex" type="submit">
-            Create contact
-            <img src="assets/img/check.png" alt="" />
-          </button>
+          <button id="deleteBtn" class="btn btn-primary">Confirm</button>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
-</body>
 
+    <div id="overProcess_div">
+      <div
+        id="contactProcess_div"
+        class="Contact_proccess_div p-relative d-flex align-items-center"
+      >
+        <button
+          class="Close_btn"
+          onclick="closeContactProcess('overProcess_div')"
+        >
+          <img src="assets/img/cancel_icon_black.png" alt="X" />
+        </button>
+        <figure id="cProcess_sider">
+          <img id="cProcess_logo" src="assets/img/join_logo_white.png" alt="" />
+          <h1 id="cProcess_h1"></h1>
+          <p id="cProcess_p">Tasks are better with a team!</p>
+          <div class="Underscore_blue"></div>
+        </figure>
+        <div
+          id="cProcess_ball"
+          class="big_ball d-flex"
+          style="background-color: #d1d1d1"
+          class="d-flex"
+        >
+          <img
+            id="cProcess_img"
+            src="assets/img/contacts_emptyC_icon.png"
+            alt=""
+          />
+        </div>
+        <form
+          id="mainForm"
+          action="#"
+          onsubmit="startContactCreation()"
+          class="form"
+        >
+          <div class="input">
+            <input
+              required
+              type="text"
+              placeholder="Firstname Lastname"
+              id="name-input"
+              pattern="^\S+\s\S+$"
+            />
+            <img
+              src="./assets/img/contacts_AddName_icon.png"
+              class="input-icon"
+              alt=""
+            />
+          </div>
+          <div class="input">
+            <input required type="email" placeholder="Email" id="email-input" />
+            <img
+              src="./assets/img/contacts_AddMail_icon.png"
+              class="input-icon"
+              alt=""
+            />
+          </div>
+          <div class="input">
+            <input
+              required
+              type="text"
+              placeholder="Phone Number"
+              id="phone-input"
+              onkeypress="return isNumberKey(event)"
+            />
+            <img
+              src="./assets/img/contacts_AddPhone_icon.png"
+              class="input-icon"
+              alt=""
+            />
+          </div>
+          <div class="form_btn_div d-flex align-items-center">
+            <button
+              id="contacts_form_cancel_btn"
+              class="btn btn-secondary Cancel_btn"
+              type="reset"
+            >
+              Cancel
+              <img src="assets/img/cancel_icon_black.png" alt="" />
+            </button>
+            <button
+              id="contacts_form_submit_btn"
+              class="btn btn-primary align-items-center d-flex"
+              type="submit"
+            >
+              Create contact
+              <img src="assets/img/check.png" alt="" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
