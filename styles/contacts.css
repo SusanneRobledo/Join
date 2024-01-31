@@ -1,530 +1,522 @@
 /*Contact List */
 
 .Main_container {
-    margin: 10vh 3vw 16px 232px;
-    padding: 16px;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    max-width: 500px;
-    min-width: 330px;
-    background-color: white;
-    height: 90vh;
+  margin: 10vh 3vw 16px 232px;
+  padding: 16px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  max-width: 500px;
+  min-width: 330px;
+  background-color: white;
+  height: 90vh;
 }
 
 #contacts_list {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 100%;
-    min-width: 360px;
-    height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  min-width: 360px;
+  height: 80vh;
 }
 
 #userDiv {
-    width: 100%;
+  width: 100%;
 }
 
 #ListDiv {
-    width: 100%;
+  width: 100%;
 }
 
 .Primary_contacts_btn {
-    width: 100%;
-    padding: 12px 0px;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    font-size: var(--fs-normal);
+  width: 100%;
+  padding: 12px 0px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  font-size: var(--fs-normal);
 }
 
 .Primary_contacts_btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .letter_div {
-    width: 90%;
-    padding: 10px 36px 0px 32px;
+  width: 90%;
+  padding: 10px 36px 0px 32px;
 }
 
 .seperate_div {
-    width: 90%;
-    height: 1px;
-    background-color: #D1D1D1;
-    margin: 0;
+  width: 90%;
+  height: 1px;
+  background-color: #d1d1d1;
+  margin: 0;
 }
 
 .Contact_div {
-    width: 100%;
-    padding: 8px 16px 8px 32px;
-    border-radius: 10px;
+  width: 100%;
+  padding: 8px 16px 8px 32px;
+  border-radius: 10px;
 }
 
 .Contact_div:hover {
-    cursor: pointer;
-    background-color: lightgrey;
+  cursor: pointer;
+  background-color: lightgrey;
 }
 
 .Contact_div_choosen {
-    color: white !important;
-    background-color: #2A3647 !important;
+  color: white !important;
+  background-color: #2a3647 !important;
 }
 
 .Initiald_svg_div {
-    width: 80px;
-    justify-content: left;
-    color: darkRed
+  width: 80px;
+  justify-content: left;
+  color: darkRed;
 }
 
 .Name_Mail_div p {
-    margin: 0;
-    text-align: left;
+  margin: 0;
+  text-align: left;
 }
 
 .Mail_text {
-    color: #007CEE;
+  color: #007cee;
 }
 
 @media (max-width: 800px) {
-    #contacts_list {
-        margin-bottom: 60px;
-    }
+  #contacts_list {
+    margin-bottom: 60px;
+  }
 }
 
 /*Contacts display */
 
 #contacts_Display_big {
-    margin-top: clamp(130px, 19vh, 300px);
-    background-color: #F6F7F8;
-    display: block;
-    flex-direction: column;
+  margin-top: clamp(130px, 19vh, 300px);
+  background-color: #f6f7f8;
+  display: block;
+  flex-direction: column;
 }
 
 #contacts_Display_big h1 {
-    font-size: var(--fs-taller);
+  font-size: var(--fs-taller);
 }
 
 #contacts_Display_big p {
-    font-size: var(--fs-normal);
+  font-size: var(--fs-normal);
 }
 
 .side_header {
-    justify-content: space-between;
-    margin-bottom: -40px;
-    margin-right: 12px;
-    margin-left: 0;
+  margin-right: 12px;
+  margin-left: 0;
 }
 
 /* Contacts Stage */
 
 #contacts_stage {
-    overflow-y: auto;
-    flex-direction: column;
+  overflow-y: auto;
+  flex-direction: column;
 }
 
 .Stage_head {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 #contacts_stage_workBtn_div {
-    margin-top: 8px;
-    align-items: center;
+  margin-top: 8px;
+  align-items: center;
 }
 
 #stage_head_right {
-    margin-left: 2vw;
+  margin-left: 2vw;
 }
 
 .Vertical_stroke {
-    width: 3px;
-    height: 60px;
-    margin: 0 2vw 0 2vw;
+  width: 3px;
+  height: 60px;
+  margin: 0 2vw 0 2vw;
 }
 
 .Horizontal_stroke {
-    display: none;
+  display: none;
 }
 
 .Divider {
-    background-color: #29ABE2;
+  background-color: #29abe2;
 }
 
 .big_ball {
-    display: flex;
-    min-width: 80px;
-    min-height: 80px;
-    border-radius: 70px;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: var(--fs-tall);
-    margin: 20px;
-    border-style: solid;
+  display: flex;
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 70px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: var(--fs-tall);
+  margin: 20px;
+  border-style: solid;
 }
 
 #contact_name {
-    font-size: var(--fs-tall);
-    margin: 0px 16px 32px 16px;
+  font-size: var(--fs-tall);
+  margin: 0px 16px 32px 16px;
 }
 
 #delete_contact_btn {
-    padding-left: 80px;
+  padding-left: 80px;
 }
 
 .Contact_stage_btn:hover {
-    color: #29ABE2;
+  color: #29abe2;
 }
 
 #delete_contact_btn:hover img {
-    content: url('/Join/assets/img/contacts_deleteContacts-active_icon.png');
-
+  content: url("/Join/assets/img/contacts_deleteContacts-active_icon.png");
 }
 
 #edit_contact_btn:hover img {
-    content: url('/Join/assets/img/contacts_editContacts-active_icon.png');
+  content: url("/Join/assets/img/contacts_editContacts-active_icon.png");
 }
 
-
 .Contacts_stage_data p {
-    padding-left: 8px;
-    text-align: left;
+  padding-left: 8px;
+  text-align: left;
 }
 
 #c_stage_mobCombi_btn {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 980px) {
+  .Hide_at_980 {
+    display: none;
+  }
 
-    .Hide_at_980 {
-        display: none;
-    }
+  .Main_container {
+    margin-left: 24vw;
+  }
 
-    .Main_container {
-        margin-left: 24vw;
-    }
+  #contacts_stage_workBtn_div {
+    flex-direction: column;
+    align-items: baseline;
+  }
 
-    #contacts_stage_workBtn_div {
-        flex-direction: column;
-        align-items: baseline;
-    }
+  #delete_contact_btn {
+    padding-left: 0;
+    padding-top: 10px;
+  }
 
-    #delete_contact_btn {
-        padding-left: 0;
-        padding-top: 10px;
-    }
-
-    .big_ball {
-        margin: 0;
-    }
-
-
+  .big_ball {
+    margin: 0;
+  }
 }
 
-@media (max-width: 900px) {}
+@media (max-width: 900px) {
+}
 
 @media (max-width: 820px) {
-    .Primary_contacts_btn {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        display: inline-flex;
-        padding: 12px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 46px;
-        bottom: 120px;
-        right: 32px;
-    }
+  .Primary_contacts_btn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 46px;
+    bottom: 120px;
+    right: 32px;
+  }
 
-    .Primary_contacts_btn t {
-        display: none;
-    }
+  .Primary_contacts_btn t {
+    display: none;
+  }
 
-    .Main_container {
-        margin-left: 0;
-        margin-right: 0;
-        width: 100vw;
-        max-width: 1000vw;
-    }
+  .Main_container {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100vw;
+    max-width: 1000vw;
+  }
 
-    .side_header {
-        flex-direction: column;
-        align-items: baseline;
-    }
+  .side_header {
+    flex-direction: column;
+    align-items: baseline;
+  }
 
-    #contacts_Display_big {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 10vh;
-        height: 90vh;
-        padding-left: 10px;
-        z-index: 1;
-        margin-top: 80px;
-    }
+  #contacts_Display_big {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+    height: 90vh;
+    padding-left: 10px;
+    z-index: 1;
+    margin-top: 80px;
+  }
 
-    #contacts_stage {
-        margin-left: 4vw;
-    }
+  #contacts_stage {
+    margin-left: 4vw;
+  }
 
-    #contacts_stage_workBtn_div {
-        display: none;
-    }
+  #contacts_stage_workBtn_div {
+    display: none;
+  }
 
-    #contact_name {
-        margin-left: 0px;
-    }
+  #contact_name {
+    margin-left: 0px;
+  }
 
-    .Contacts_stage_data {
-        margin-left: 10vw;
-    }
+  .Contacts_stage_data {
+    margin-left: 10vw;
+  }
 
-    .Vertical_stroke {
-        display: none;
-    }
+  .Vertical_stroke {
+    display: none;
+  }
 
-    .Horizontal_stroke {
-        display: block;
-        width: 60px;
-        height: 3px;
-    }
+  .Horizontal_stroke {
+    display: block;
+    width: 60px;
+    height: 3px;
+  }
 
-    .Back_Arrow {
-        top: 40px;
-        right: 32px;
-    }
+  .Back_Arrow {
+    top: 40px;
+    right: 32px;
+  }
 
-    .big_ball {
-        margin-top: 55px;
-        margin-left: 0;
-    }
+  .big_ball {
+    margin-top: 55px;
+    margin-left: 0;
+  }
 
-    #c_stage_mobCombi_btn {
-        display: block;
-    }
+  #c_stage_mobCombi_btn {
+    display: block;
+  }
 }
 
 /*Add & edit Contacts */
 
 #shader_div {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.7;
-    z-index: 10;
-    background-color: white;
-    display: none;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.7;
+  z-index: 10;
+  background-color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
 #BlockDiv {
-    display: none;
-    height: 100vh;
-    width: 100vw;
-    z-index: 6;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  z-index: 6;
 }
 
 .Close_btn {
-    position: absolute;
-    top: 16px;
-    right: 24px;
-    border-style: none;
-    background-color: white;
-    cursor: pointer;
-    padding: 0;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  border-style: none;
+  background-color: white;
+  cursor: pointer;
+  padding: 0;
 }
 
 .Close_btn:hover img {
-    content: url('/Join/assets/img/cancel_icon_blue.png');
+  content: url("/Join/assets/img/cancel_icon_blue.png");
 }
 
 #delete_question {
-    position: fixed;
-    display: none;
-    top: 30vh;
-    left: 40vw;
-    width: 30vw;
-    height: 152px;
-    width: clamp(250px, 30vw, 350px);
-    background-color: white;
-    border-color: #2A3647;
-    z-index: 90;
-    align-items: center;
-    justify-content: center;
-    border-radius: 24px;
-    border-style: solid;
-    border-width: 1px;
+  position: fixed;
+  display: none;
+  top: 30vh;
+  left: 40vw;
+  width: 30vw;
+  height: 152px;
+  width: clamp(250px, 30vw, 350px);
+  background-color: white;
+  border-color: #2a3647;
+  z-index: 90;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  border-style: solid;
+  border-width: 1px;
 }
 
 #show_deleting_name {
-    color: #29ABE2;
+  color: #29abe2;
 }
 
 .delete_btn_div {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 #overProcess_div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 11;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+  display: none;
 }
 
 .Contact_proccess_div {
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 40px;
-    width: clamp(900px 40vw 1200px);
-    height: 400px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 40px;
+  width: clamp(900px 40vw 1200px);
+  height: 400px;
 }
 
 .Underscore_blue {
-    height: 2px;
-    width: 90px;
-    margin-top: 10px;
-    background-color: #29ABE2;
+  height: 2px;
+  width: 90px;
+  margin-top: 10px;
+  background-color: #29abe2;
 }
 
 .form_btn_div {
-    margin-top: 16px;
-    gap: 24px;
-    width: 100%;
-    max-width: 422px;
-    padding-bottom: 16px;
+  margin-top: 16px;
+  gap: 24px;
+  width: 100%;
+  max-width: 422px;
+  padding-bottom: 16px;
 }
 
 #mainForm {
-    padding-left: 46px;
+  padding-left: 46px;
 }
 
 #cProcess_sider {
-    background-color: #2A3647;
-    color: white;
-    text-align: left;
-    width: clamp(450px, 35vw 500px);
-    height: 100%;
-    margin: 0;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    padding: 100px 10px 10px 24px;
+  background-color: #2a3647;
+  color: white;
+  text-align: left;
+  width: clamp(450px, 35vw 500px);
+  height: 100%;
+  margin: 0;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  padding: 100px 10px 10px 24px;
 }
 
 #cProcess_sider img {
-    width: 45px;
-    height: 55px;
+  width: 45px;
+  height: 55px;
 }
 
 #cProcess_sider h1,
 #cProcess_sider p {
-    text-align: left;
-    margin: 0;
+  text-align: left;
+  margin: 0;
 }
 
 #cProcess_ball {
-    width: 100px;
-    height: 100px;
-    margin: 8px;
-    margin-right: -72px;
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  margin-right: -72px;
 }
 
-#contacts_form_submit_btn {}
+#contacts_form_submit_btn {
+}
 
 .Cancel_btn img {
-    width: 12px;
-    height: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .Cancel_btn:hover img {
-    content: url('/Join/assets/img/cancel_icon_blue.png');
+  content: url("/Join/assets/img/cancel_icon_blue.png");
 }
 
 @media (max-width: 588px) {
-
-    #contacts_form_cancel_btn {
-        min-height: 60px;
-    }
-
+  #contacts_form_cancel_btn {
+    min-height: 60px;
+  }
 }
 
 @media (max-width: 920px) {
+  .Contact_proccess_div {
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 40px;
+    height: 70%;
+    width: 80%;
+  }
 
+  #cProcess_sider {
+    display: flex;
+    width: 100%;
+    height: 45%;
+    padding: 30px;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 40px;
+    margin-top: -12%;
+  }
+
+  #cProcess_logo {
+    display: none;
+  }
+
+  #cProcess_ball {
+    margin: 0;
+    margin-top: -40px;
+  }
+
+  .Close_btn img {
+    content: url("/Join/assets/img/close-white.png");
+    background-color: var(--secondary-bg-color);
+    margin-bottom: -10px;
+  }
+
+  .Close_btn:hover img {
+    content: url("/Join/assets/img/close-white.png");
+  }
+
+  #mobile_contacts_menu {
+    bottom: 120px;
+    height: 80px;
+    background-color: white;
+    z-index: 50;
+  }
+
+  #delete_question {
+    left: 14vw;
+  }
+
+  @media (max-width: 420px) {
     .Contact_proccess_div {
-        flex-direction: column;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 40px;
-        height: 70%;
-        width: 80%;
+      width: 100%;
     }
-
-    #cProcess_sider {
-        display: flex;
-        width: 100%;
-        height: 45%;
-        padding: 30px;
-        justify-content: center;
-        flex-direction: column;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 40px;
-        margin-top: -12%;
-    }
-
-    #cProcess_logo {
-        display: none;
-    }
-
-    #cProcess_ball {
-        margin: 0;
-        margin-top: -40px;
-    }
-
-    .Close_btn img {
-        content: url('/Join/assets/img/close-white.png');
-        background-color: var(--secondary-bg-color);
-        margin-bottom: -10px;
-    }
-
-    .Close_btn:hover img {
-        content: url('/Join/assets/img/close-white.png')
-    }
-
-    #mobile_contacts_menu {
-        bottom: 120px;
-        height: 80px;
-        background-color: white;
-        z-index: 50;
-    }
-
-    #delete_question {
-        left: 14vw;
-    }
-
-    @media (max-width: 420px) {
-        .Contact_proccess_div {
-            width: 100%;
-        }
-    }
+  }
 }
