@@ -273,6 +273,9 @@ a {
 
 .Sider_lower_links_d {
   bottom: -24px;
+  width: 100%;
+  align-items: flex-start;
+  margin-left: 64px;
 }
 
 .Sider_lower_links_d a {
