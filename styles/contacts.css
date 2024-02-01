@@ -3,6 +3,7 @@
 .Main_container {
   margin: 10vh 3vw 16px 232px;
   padding: 16px;
+  padding-right: 8px;
   margin-bottom: 0;
   padding-bottom: 0;
   max-width: 500px;
@@ -25,6 +26,11 @@
 
 #ListDiv {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
 }
 
 .Primary_contacts_btn {
@@ -36,6 +42,11 @@
   flex-shrink: 0;
   border-radius: 10px;
   font-size: var(--fs-normal);
+}
+
+.Main_container .Primary_contacts_btn {
+  width: 90%;
+  margin-right: 8px;
 }
 
 .Primary_contacts_btn:hover {
@@ -55,14 +66,17 @@
 }
 
 .Contact_div {
-  width: 100%;
+  width: 90%;
+  margin: 4px;
   padding: 8px 16px 8px 32px;
   border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .Contact_div:hover {
   cursor: pointer;
-  background-color: lightgrey;
+  background-color: rgba(241, 241, 241, 0.9);
 }
 
 .Contact_div_choosen {
@@ -74,6 +88,7 @@
   width: 80px;
   justify-content: left;
   color: darkRed;
+  margin-left: -20px;
 }
 
 .Name_Mail_div p {
@@ -83,6 +98,8 @@
 
 .Mail_text {
   color: #29abe2;
+  font-size: 16px;
+  padding-top: 4px;
 }
 
 @media (max-width: 800px) {
@@ -132,16 +149,32 @@
 }
 
 .Stage_head {
-  margin-top: 16px;
+  margin-top: 32px;
+  margin-bottom: 40px;
 }
 
 #contacts_stage_workBtn_div {
-  margin-top: 8px;
+  margin-top: 10px;
   align-items: center;
 }
 
+#contacts_stage_workBtn_div a {
+  display: flex;
+  align-items: center;
+}
+
+.Contact_stage_btn {
+  font-size: 16px;
+  width: 60px;
+}
+
+.Contact_stage_btn img {
+  width: 16px;
+  margin-right: 6px;
+}
+
 #stage_head_right {
-  margin-left: 2vw;
+  margin-left: 40px;
 }
 
 .Vertical_stroke {
@@ -161,8 +194,7 @@
 .big_ball {
   min-width: 100px;
   min-height: 100px;
-  margin-left: 52px;
-  margin-bottom: 64px;
+
   display: flex;
   border-radius: 72px;
   justify-content: center;
@@ -176,15 +208,19 @@
 
 #contact_name {
   font-size: var(--fs-tall);
-  margin: 0px 16px 32px 16px;
 }
 
 #delete_contact_btn {
-  padding-left: 80px;
+  padding-left: 24px;
+}
+
+#delete_contact_btn img {
+  width: 15px;
 }
 
 .Contact_stage_btn:hover {
   color: #29abe2;
+  font-weight: 600;
 }
 
 #delete_contact_btn:hover img {
@@ -198,6 +234,10 @@
 .Contacts_stage_data p {
   padding-left: 8px;
   text-align: left;
+}
+
+.Contacts_stage_data p:nth-child(1) {
+  padding-bottom: 16px;
 }
 
 #c_stage_mobCombi_btn {
@@ -462,6 +502,11 @@ img {
 
 #cProcess_sider p {
   font-size: 27px;
+}
+
+#cProcess_ball.big_ball {
+  margin-left: 52px;
+  margin-bottom: 64px;
 }
 
 .Cancel_btn img {
