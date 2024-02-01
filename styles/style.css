@@ -168,14 +168,15 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+  box-shadow: inset 0 0 2px rgb(150, 150, 150);
+  border-radius: 8px;
+  margin: 16px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--secondary-bg-color);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Handle on hover */
