@@ -285,6 +285,11 @@ a {
   margin-bottom: 14px;
 }
 
+.Sider_lower_links_d a:hover {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
 #header_menu_id {
   top: 100px;
   width: 150px;
@@ -411,7 +416,7 @@ a {
 }
 
 .Help_Container j {
-  color: #29abe2;
+  color: var(--accent-color);
 }
 
 .Back_Arrow {
@@ -419,6 +424,10 @@ a {
   position: absolute;
   top: 130px;
   right: 124px;
+}
+
+.Help_Container h3 {
+  margin-right: 6px;
 }
 
 @media (max-width: 820px) {

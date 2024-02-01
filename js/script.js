@@ -189,10 +189,10 @@ function markCorrectMenuPoint() {
     let toChoose = document.getElementById(activeSide + "ID");
     if (toChoose) {
       toChoose.classList.add("Choosen_field");
-    } else {
+    } /* else {
       let helpIcon = document.getElementById("header_help_icon_d");
       helpIcon.classList.add("d-none");
-    }
+    } */
   } catch {
     return;
   }
