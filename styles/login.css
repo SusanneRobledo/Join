@@ -53,8 +53,8 @@ main {
 }
 
 #accept-policy {
-  display: flex; 
-  width: 240px
+  display: flex;
+  width: 240px;
 }
 
 #accept-policy a {
@@ -72,7 +72,8 @@ footer {
 }
 
 .footer-link {
-  min-width: 150px;
+  min-width: 120px;
+  margin-top: 32px;
 }
 
 footer a:hover {
@@ -156,7 +157,7 @@ select {
   color: lightgray;
 }
 
-.input>input {
+.input > input {
   flex: 1;
 }
 
@@ -221,12 +222,15 @@ form .btn {
   padding-block-end: 1em;
 }
 
-.error-container+.login-buttons {
+.error-container + .login-buttons {
   margin-block-start: 1.5em;
 }
 
-@media (min-width: 820px) {
+#remember-me-container {
+  gap: 6px;
+}
 
+@media (min-width: 820px) {
   #login-logo,
   #login-logo-static {
     width: 100px;
