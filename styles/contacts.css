@@ -228,7 +228,8 @@
   width: 15px;
 }
 
-.Contact_stage_btn:hover {
+.Contact_stage_btn:hover,
+#mobile_contacts_menu a:hover {
   color: #29abe2;
   font-weight: 600;
 }
@@ -325,18 +326,43 @@
     display: none;
     flex-direction: column;
     position: fixed;
-    top: 0;
+    /* top: 0; */
     left: 0;
     right: 0;
-    bottom: 10vh;
+    /* bottom: 10vh; */
     height: 90vh;
     padding-left: 10px;
     z-index: 1;
     margin-top: 80px;
   }
 
-  #contacts_stage {
+  #contacts_Display_big h1 {
+    margin-top: 10vh;
+    margin-bottom: 8px;
+  }
+
+  #contacts_stage,
+  #contacts_Display_big h1 {
     margin-left: 4vw;
+  }
+
+  .side_header span {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .Stage_head {
+    margin-top: 6vh;
+  }
+
+  .Contacts_stage_data .Mail_text {
+    padding-top: 0px;
+    padding-bottom: 8px;
+  }
+
+  .Stage_head .big_ball {
+    margin-top: 0px;
   }
 
   #contacts_stage_workBtn_div {
@@ -373,6 +399,7 @@
 
   #c_stage_mobCombi_btn {
     display: block;
+    width: 60px;
   }
 }
 
@@ -620,8 +647,11 @@ img {
   #mobile_contacts_menu {
     bottom: 120px;
     height: 80px;
+    width: 135px;
+    padding-top: 5px;
     background-color: white;
     z-index: 50;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
   }
 
   #delete_question {
