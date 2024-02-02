@@ -131,22 +131,22 @@ label,
   gap: 8px;
 }
 
-.radio-button.prio-urgent:has(input[type='radio']:checked) {
+.radio-button.prio-urgent:has(input[type="radio"]:checked) {
   background-color: #ff3d00;
   color: white;
 }
 
-.radio-button.prio-medium:has(input[type='radio']:checked) {
+.radio-button.prio-medium:has(input[type="radio"]:checked) {
   background-color: #ffa800;
   color: white;
 }
 
-.radio-button.prio-low:has(input[type='radio']:checked) {
+.radio-button.prio-low:has(input[type="radio"]:checked) {
   background-color: #7ae229;
   color: white;
 }
 
-.radio-button:has(input[type='radio']:checked) path {
+.radio-button:has(input[type="radio"]:checked) path {
   fill: white;
 }
 
@@ -174,7 +174,7 @@ label,
   margin: 0;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   appearance: none;
   margin: 0;
 }
@@ -254,11 +254,11 @@ textarea {
 }
 
 .subtask:not(.subtask-edit):hover {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.7em;
 }
 
-.subtask:not(.subtask-edit):hover input{
+.subtask:not(.subtask-edit):hover input {
   cursor: default;
 }
 
@@ -421,5 +421,12 @@ dialog form h1 {
 
   .mobile {
     display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-header {
+    top: 80px;
+    padding-block-start: 0.5em;
   }
 }
