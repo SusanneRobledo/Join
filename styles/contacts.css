@@ -1,5 +1,9 @@
 /*Contact List */
 
+body {
+  overflow: hidden;
+}
+
 .Main_container {
   margin: 10vh 3vw 16px 232px;
   padding: 16px;
