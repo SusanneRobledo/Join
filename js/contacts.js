@@ -143,37 +143,41 @@ function openContact(i) {
   let contact = contactList[i];
   let stage = document.getElementById("contacts_stage");
   stage.innerHTML = "";
-  stage.innerHTML += /*html*/ `
-        <span class="Stage_head d-flex align-items-center">
-            <div id="initial_ball_big" class="big_ball d-flex" style="background-color: ${contact.color}">${contact.initials}</div>
-            <div id="stage_head_right">
-                <t id="contact_name">${contact.name}</t>
-                <div id="contacts_stage_workBtn_div"  class=" d-flex">
-                    <a href="#" onclick="startEditProcess(${i})" id="edit_contact_btn" class="Contact_stage_btn">
-                        <img src="assets/img/contacts_editContact_icon.png" alt="">
-                                Edit
-                    </a>
-                     <a href="#" onclick="startDeleteProcess(${i})" id="delete_contact_btn" class="Contact_stage_btn">
-                        <img src="assets/img/contacts_deleteContacts_icon.png" alt="">
-                                Delete
-                    </a>
-                </div>
-            </div>
-        </span>
-        <span class="Contacts_stage_data">
-            <p>Contact Information</p>
-            <p><b>E-Mail</b></p>
-            <p class="Mail_text">${contact.e_mail}</p>
-            <p><b>Phone</b></p>
-            <p>${contact.phone}</p>
-        </span>
-    `;
+  stage.innerHTML += renderContactDisplayHTML(i, contact);
   let bigStage = document.getElementById("contacts_Display_big");
   if (loaded == "mobile") {
     showArrow(bigStage);
   }
   bigStage.style.display = "flex";
   menuFunctions(i);
+}
+
+function renderContactDisplayHTML(i, contact) {
+  return /*html*/ `
+  <span class="Stage_head d-flex align-items-center">
+      <div id="initial_ball_big" class="big_ball d-flex" style="background-color: ${contact.color}">${contact.initials}</div>
+      <div id="stage_head_right">
+          <div id="contact_name">${contact.name}</div>
+          <div id="contacts_stage_workBtn_div"  class=" d-flex">
+              <a href="#" onclick="startEditProcess(${i})" id="edit_contact_btn" class="Contact_stage_btn">
+                  <img src="assets/img/contacts_editContact_icon.png" alt="">
+                          Edit
+              </a>
+               <a href="#" onclick="startDeleteProcess(${i})" id="delete_contact_btn" class="Contact_stage_btn">
+                  <img src="assets/img/contacts_deleteContacts_icon.png" alt="">
+                          Delete
+              </a>
+          </div>
+      </div>
+  </span>
+  <span class="Contacts_stage_data">
+      <p>Contact Information</p>
+      <p><b>E-Mail</b></p>
+      <p class="Mail_text">${contact.e_mail}</p>
+      <p><b>Phone</b></p>
+      <p>${contact.phone}</p>
+  </span>
+`;
 }
 
 /**Unmarks former marked contact, and marks the contact that was choosen. */
@@ -306,6 +310,7 @@ function editContact(i) {
   contact.e_mail = document.getElementById("email-input").value;
   contact.phone = document.getElementById("phone-input").value;
   contact.initials = getInitials(document.getElementById("name-input").value);
+  openContact(i);
 }
 
 /** Checks, if the contact is the user,
@@ -341,7 +346,7 @@ function showConfirmAlert(i) {
 
   deleteAlert.innerHTML = /*html*/ `
         <div class="align-items-center">
-            <p>Do you really want to delete <br><j id="show_deleting_name">${contactList[i].name}</j>?</p>
+            <p>Do you really want to delete <br><div id="show_deleting_name">${contactList[i].name}</div>?</p>
             <div id="" class="delete_btn_div">
                 <button class="btn btn-secondary" onclick="closeContactProcess('delete_question')">Cancel</button>
                 <button id='deleteBtn' onclick="deleteContact(${i}), closeContactProcess('delete_question'), closeContactStage()" class="btn btn-primary">Confirm</button>
