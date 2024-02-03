@@ -15,17 +15,16 @@ async function initSummary() {
  * This function adjusts the greeting message and user name display accordingly.
  */
 function greetUser() {
-  const isGuestUser = location.search.includes("guestuser=true")
-  setActiveUser(isGuestUser)
-  if (screenType === "mobile" && isGuestUser) {
+  setActiveUser();
+  if (screenType === "mobile" && !activeUser) {
     loadHelloPageMobile();
-    greetGuestUser(isGuestUser, "greetingMobile", "userNameMobile");
+    greetGuestUser("greetingMobile", "userNameMobile");
   } else if (screenType === "mobile" && activeUser) {
     loadHelloPageMobile();
     document.getElementById("userNameMobile").innerHTML = activeUser.name;
-  } else if (screenType === "desktop" && isGuestUser) {
+  } else if (screenType === "desktop" && !activeUser) {
     showGreeting("greetingDesktop");
-    greetGuestUser(isGuestUser, "greetingDesktop", "userNameDesktop");
+    greetGuestUser("greetingDesktop", "userNameDesktop");
   } else if (screenType === "desktop" && activeUser) {
     showGreeting("greetingDesktop");
     document.getElementById("userNameDesktop").innerHTML = activeUser.name;
@@ -36,8 +35,8 @@ function greetUser() {
  * If Login came as Guest, activeUser will be set on "false"
  * @param {boolean} isGuestUser If Guets login is used, this will be true, else it will be false.
  */
-function setActiveUser(isGuestUser) {
-  if (isGuestUser) {
+function setActiveUser() {
+  if (!activeUser) {
     sessionStorage.setItem("activeUser", JSON.stringify(false));
     activeUser = false;
   }
@@ -49,17 +48,10 @@ function setActiveUser(isGuestUser) {
  * @param {string} greetingID - The ID of the HTML element containing the greeting message.
  * @param {string} nameID - The ID of the HTML element containing the user's name display.
  */
-function greetGuestUser(isGuestUser, greetingID, nameID) {
-  if (isGuestUser) {
-    localStorage.setItem("isGuestUser", "true");
+function greetGuestUser(greetingID, nameID) {
+  if (!activeUser) {
     modifyGreetingForGuestUser(greetingID);
     hideUserName(nameID);
-  } else {
-    const storedIsGuestUser = localStorage.getItem("isGuestUser");
-    if (storedIsGuestUser === "true") {
-      modifyGreetingForGuestUser(greetingID);
-      hideUserName(nameID);
-    }
   }
 }
 
