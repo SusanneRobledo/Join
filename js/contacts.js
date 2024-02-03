@@ -17,6 +17,15 @@ let ballColorCollection = [
 ];
 // If no Color: #D1D1D1
 
+let processH1;
+let processP;
+let nameField;
+let emailField;
+let phoneField;
+let contactBal;
+let cancelBtn;
+let submitBtn;
+
 /**
  * Creates the visible contact list out of the backend Data.
  */
@@ -239,53 +248,56 @@ function startEditProcess(i) {
  * @param {Number} i - Index of contact within contactList. If a new contact has to be added, it will be false.
  */
 function prepareContactProcessDiv(contact, i) {
-  let processH1 = document.getElementById("cProcess_h1");
-  let processP = document.getElementById("cProcess_p");
-  let nameField = document.getElementById("name-input");
-  let emailField = document.getElementById("email-input");
-  let phoneField = document.getElementById("phone-input");
-  let contactBal = document.getElementById("cProcess_ball");
-  let cancelBtn = document.getElementById("contacts_form_cancel_btn");
-  let submitBtn = document.getElementById("contacts_form_submit_btn");
-  let form = document.getElementById("mainForm");
-
+  processH1 = document.getElementById("cProcess_h1");
+  processP = document.getElementById("cProcess_p");
+  nameField = document.getElementById("name-input");
+  emailField = document.getElementById("email-input");
+  phoneField = document.getElementById("phone-input");
+  contactBal = document.getElementById("cProcess_ball");
+  cancelBtn = document.getElementById("contacts_form_cancel_btn");
+  submitBtn = document.getElementById("contacts_form_submit_btn");
+  form = document.getElementById("mainForm");
   if (contact) {
-    processH1.innerHTML = `Edit contact`;
-    processP.style.display = "none";
-    nameField.value = contact.name;
-    emailField.value = contact.e_mail;
-    phoneField.value = contact.phone;
-    contactBal.style.backgroundColor = contact.color;
-    contactBal.innerHTML = contact.initials;
-    cancelBtn.onclick = function (event) {
-      event.preventDefault(), startDeleteProcess(i);
-    };
-    cancelBtn.innerHTML = `Delete`;
-    submitBtn.innerHTML = /*html*/ `Save changes
-         <img src="assets/img/check.png" alt="">`;
-
-    form.onsubmit = function () {
-      editContactProcess(i);
-    };
+    renderEditContactPopUp(contact, i);
+    form.onsubmit = () => editContactProcess(i);
   } else {
-    processH1.innerHTML = `Add Contact`;
-    processP.style.display = "block";
-    nameField.value = "";
-    emailField.value = "";
-    phoneField.value = "";
-    contactBal.style.backgroundColor = "#D1D1D1";
-    contactBal.innerHTML = /*html*/ `<img id="cProcess_img" src="assets/img/contacts_emptyC_icon.png" alt="">`;
-    cancelBtn.onclick = function () {
-      closeContactProcess("overProcess_div");
-    };
-    cancelBtn.innerHTML = /*html*/ `Cancel  <img src="assets/img/cancel_icon_black.png" alt="">`;
-    submitBtn.innerHTML = /*html*/ `Add Contact
-         <img src="assets/img/check.png" alt="">`;
-
-    form.onsubmit = function () {
-      startContactCreation();
-    };
+    renderAddContactPopUp();
+    form.onsubmit = () => startContactCreation();
   }
+}
+
+/**
+ * Renders the Edit Contact HTML for the Pop Up Window
+ * @returns edit contact html elements
+ */
+function renderEditContactPopUp(contact, i) {
+  processH1.innerHTML = "Edit contact";
+  processP.style.display = "none";
+  nameField.value = contact.name;
+  emailField.value = contact.e_mail;
+  phoneField.value = contact.phone;
+  contactBal.style.backgroundColor = contact.color;
+  contactBal.innerHTML = contact.initials;
+  (cancelBtn.onclick = (e) => {
+    e.preventDefault(), startDeleteProcess(i);
+  }),
+    (cancelBtn.innerHTML = "Delete");
+  submitBtn.innerHTML = "Save changes<img src='assets/img/check.png' alt=''>";
+}
+
+function renderAddContactPopUp() {
+  processH1.innerHTML = "Add Contact";
+  processP.style.display = "block";
+  nameField.value = "";
+  emailField.value = "";
+  phoneField.value = "";
+  contactBal.style.backgroundColor = "#D1D1D1";
+  contactBal.innerHTML =
+    '<img id="cProcess_img" src="assets/img/contacts_emptyC_icon.png" alt="">';
+  cancelBtn.onclick = () => closeContactProcess("overProcess_div");
+  cancelBtn.innerHTML =
+    'Cancel  <img src="assets/img/cancel_icon_black.png" alt="">';
+  submitBtn.innerHTML = 'Add Contact<img src="assets/img/check.png" alt="">';
 }
 
 /**

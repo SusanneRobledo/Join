@@ -24,16 +24,8 @@ body {
   height: 80vh;
 }
 
+#ListDiv,
 #userDiv {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-}
-
-#ListDiv {
   width: 100%;
   display: flex;
   flex-direction: column;
