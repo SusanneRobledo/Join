@@ -12,7 +12,7 @@ let taskList = [];
 let userList = [];
 let loggedIn;
 let loginData;
-let activeUser;
+let registeredUser;
 let hideSiderMenu;
 let maxUserId;
 let maxTaskId;
@@ -37,7 +37,7 @@ function verifyUserStatus() {
   } else {
     status = JSON.parse(sessionStorage.getItem("loggedIn"));
   }
-  activeUser = JSON.parse(sessionStorage.getItem("activeUser"));
+  registeredUser = JSON.parse(sessionStorage.getItem("registeredUser"));
   loggedIn = status;
   if (
     !window.location.href.endsWith("login.html") &&
@@ -173,8 +173,8 @@ function unloadTemplate(toUnloadID) {
  */
 function showInitialsHeader() {
   let svgText = document.getElementById("svg_text");
-  if (activeUser) {
-    svgText.textContent = activeUser.initials;
+  if (registeredUser) {
+    svgText.textContent = registeredUser.initials;
   } else {
     svgText.textContent = "G";
   }
@@ -387,7 +387,7 @@ async function getTaskID() {
 function logOut() {
   localStorage.setItem("loggedIn", "false");
   sessionStorage.setItem("loggedIn", "false");
-  sessionStorage.setItem("activeUser", "false");
+  sessionStorage.setItem("registeredUser", "false");
   window.sessionStorage.setItem("loggedIn", "false");
   window.location.href = "./login.html";
 }

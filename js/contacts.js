@@ -38,17 +38,17 @@ async function showContacts() {
   makeUserDiv(userDiv);
   let assignedLetter = "";
 
-  if (activeUser) {
+  if (registeredUser) {
     isUserInContacts(userDiv);
   }
 
   for (i in contactList) {
     let contact = contactList[i];
-    if (contact.id != activeUser.id) {
+    if (contact.id != registeredUser.id) {
       createSorter(list, assignedLetter, contact);
       writeContact(list, i, contact);
       assignedLetter = contact.startingLetter;
-    } else if (contact.id == activeUser.id) {
+    } else if (contact.id == registeredUser.id) {
       writeContact(userDiv, i, contact);
     }
   }
@@ -60,7 +60,7 @@ async function showContacts() {
  * @param {HTMLElement} userDiv The Element we want to work in
  */
 function makeUserDiv(userDiv) {
-  if (!activeUser) {
+  if (!registeredUser) {
     userDiv.style.display = "none";
   } else {
     userDiv.innerHTML = /*html*/ `
@@ -77,7 +77,10 @@ function makeUserDiv(userDiv) {
  * @param {Object} contact the Contact, we want to add to the list
  */
 function createSorter(list, assignedLetter, contact) {
-  if (assignedLetter != contact.startingLetter && contact.id != activeUser.id) {
+  if (
+    assignedLetter != contact.startingLetter &&
+    contact.id != registeredUser.id
+  ) {
     list.innerHTML += /*html*/ `
             <figure class="letter_div">${contact.startingLetter}</figure>
             <figure class="seperate_div"></figure>
@@ -331,7 +334,7 @@ function editContact(i) {
 function startDeleteProcess(i) {
   activateShader();
 
-  if (contactList[i].id == activeUser.id) {
+  if (contactList[i].id == registeredUser.id) {
     showBlockAlert();
   } else {
     showConfirmAlert(i);
@@ -507,12 +510,12 @@ function closeMobCombMenu() {
 function isUserInContacts() {
   let userFound = false;
   for (i in contactList) {
-    if (contactList[i].id === activeUser.id) {
+    if (contactList[i].id === registeredUser.id) {
       userFound = true;
       break;
     }
   }
-  if (!userFound && activeUser) {
+  if (!userFound && registeredUser) {
     createUserContact();
   }
 }
@@ -523,12 +526,12 @@ function isUserInContacts() {
  */
 function createUserContact() {
   let newContact = {
-    id: activeUser.id,
-    startingLetter: getStartingLetter(activeUser.name),
-    name: activeUser.name,
-    e_mail: activeUser.email,
+    id: registeredUser.id,
+    startingLetter: getStartingLetter(registeredUser.name),
+    name: registeredUser.name,
+    e_mail: registeredUser.email,
     phone: " ",
-    initials: getInitials(activeUser.name),
+    initials: getInitials(registeredUser.name),
     color: getColor(),
   };
   contactList.push(newContact);

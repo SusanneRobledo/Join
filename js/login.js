@@ -57,7 +57,7 @@ function validateLoginForm(e) {
 
 /**called upon successful login validation.
  * If remember me checkbox is checked, current user data is written into local storage, otherwise to session storage.
- * In both cases, activeUser is set in session storage.
+ * In both cases, registeredUser is set in session storage.
  * @param {object} user Data of user that is logging in. */
 function proceedLogin(user) {
   if (document.getElementById("remember-me").classList.contains("checked")) {
@@ -68,7 +68,7 @@ function proceedLogin(user) {
     localStorage.setItem("loginData", "");
     localStorage.setItem("loggedIn", "false");
   }
-  sessionStorage.setItem("activeUser", JSON.stringify(user));
+  sessionStorage.setItem("registeredUser", JSON.stringify(user));
   window.location.href = "./summary.html";
 }
 

@@ -15,30 +15,30 @@ async function initSummary() {
  * This function adjusts the greeting message and user name display accordingly.
  */
 function greetUser() {
-  setActiveUser();
-  if (screenType === "mobile" && !activeUser) {
+  setregisteredUser();
+  if (screenType === "mobile" && !registeredUser) {
     loadHelloPageMobile();
     greetGuestUser("greetingMobile", "userNameMobile");
-  } else if (screenType === "mobile" && activeUser) {
+  } else if (screenType === "mobile" && registeredUser) {
     loadHelloPageMobile();
-    document.getElementById("userNameMobile").innerHTML = activeUser.name;
-  } else if (screenType === "desktop" && !activeUser) {
+    document.getElementById("userNameMobile").innerHTML = registeredUser.name;
+  } else if (screenType === "desktop" && !registeredUser) {
     showGreeting("greetingDesktop");
     greetGuestUser("greetingDesktop", "userNameDesktop");
-  } else if (screenType === "desktop" && activeUser) {
+  } else if (screenType === "desktop" && registeredUser) {
     showGreeting("greetingDesktop");
-    document.getElementById("userNameDesktop").innerHTML = activeUser.name;
+    document.getElementById("userNameDesktop").innerHTML = registeredUser.name;
   }
 }
 
 /**
- * If Login came as Guest, activeUser will be set on "false"
+ * If Login came as Guest, registeredUser will be set on "false"
  * @param {boolean} isGuestUser If Guets login is used, this will be true, else it will be false.
  */
-function setActiveUser() {
-  if (!activeUser) {
-    sessionStorage.setItem("activeUser", JSON.stringify(false));
-    activeUser = false;
+function setregisteredUser() {
+  if (!registeredUser) {
+    sessionStorage.setItem("registeredUser", JSON.stringify(false));
+    registeredUser = false;
   }
 }
 
@@ -49,7 +49,7 @@ function setActiveUser() {
  * @param {string} nameID - The ID of the HTML element containing the user's name display.
  */
 function greetGuestUser(greetingID, nameID) {
-  if (!activeUser) {
+  if (!registeredUser) {
     modifyGreetingForGuestUser(greetingID);
     hideUserName(nameID);
   }
