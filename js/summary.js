@@ -12,7 +12,7 @@ async function initSummary() {
 }
 
 /**
- * If User logs in as Guest, registeredUser in the session storage will be set to "false".
+ * If User logs in as Guest, registeredUser will be set in session storage and flagged as "false". Needed for Contacts.js!
  */
 function setRegisteredUser() {
   if (!registeredUser) {
