@@ -266,7 +266,7 @@ async function orderTasks(newTask) {
   if (selectedTask === null) {
     taskList.push(newTask);
     await setItemInBackend("taskList", JSON.stringify(taskList));
-    showNotification("notification", "/board.html");
+    showNotification("notification", "./board.html");
   } else {
     taskList[getTaskIndexByID(selectedTask.id)] = newTask;
     task = newTask;
