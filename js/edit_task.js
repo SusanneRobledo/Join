@@ -1,3 +1,5 @@
+let formattedDate;
+
 /**
  * Gets selectet Task, and writes the Task, returned by generateEditTaskHTML() into a container.
  * Afterwards a few functions to make the editing work as it should.
@@ -6,10 +8,11 @@
 function editTask(taskID) {
   selectedTask = getTaskByID(taskID);
   let editCard = document.getElementById("popUpContainer");
+  formatDateforDatePicker(selectedTask);
   editCard.innerHTML = generateEditTaskHTML(taskID);
-  markPrioForEdit(taskID);
+  markPrioForEdit(selectedTask);
   setSelectedContactIdsArray(selectedTask["assignedTo"]);
-  renderSubtasksList(selectedTask);
+  renderSubtasksList(taskID);
 }
 
 /**
@@ -40,18 +43,29 @@ function showAssignedContacts(taskID) {
 
 /**
  * Checks priority field in Edit-Task
- * @param {Number} taskID -ID of used Task
+ * @param {Object} selectedTask - selected Task in Array
  */
-function markPrioForEdit(taskID) {
-  let task = getTaskByID(taskID);
+function markPrioForEdit(selectedTask) {
   let div = document.getElementById("prio-inputs");
   let prioFields = div.querySelectorAll("input");
   for (i in prioFields) {
-    if (prioFields[i].value == task.priority) {
+    if (prioFields[i].value == selectedTask.priority) {
       prioFields[i].checked = true;
       break;
     }
   }
+}
+
+/**
+ * Formats the date from the array to the required date pickter format so it can be displayed in input field.
+ * original format in Array: dd.mm.yyyy
+ * changes to Format: yyyy-mm-dd for date picker.
+ * @param {Object} selectedTask selected task from Array
+ */
+function formatDateforDatePicker(selectedTask) {
+  let inputDate = selectedTask.dueDate;
+  let [day, month, year] = inputDate.split(".");
+  formattedDate = `${year}-${month}-${day}`;
 }
 
 /**
@@ -233,16 +247,13 @@ function generateEditTaskHTML(taskID) {
               </div>
               <div class="form-control">
                 <label for="due-date-input">Due date</label>
-                <div class="input">
                   <input
-                    required
-                    type="text"
-                    placeholder="dd/mm/yyyy"
                     id="due-date-input"
-                    value="${task.dueDate}"
+                    class="input"
+                    required
+                    type="date"
+                    value="${formattedDate}"
                   />
-                  <img src="./assets/img/event.png" class="edit-input-icon" />
-                </div>
                 <div class="error-container">
                   <div class="error-message" id="due-date-input-error"></div>
                 </div>

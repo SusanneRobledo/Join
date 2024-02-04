@@ -447,7 +447,7 @@ input[type="date"] {
 }
 
 ::-webkit-calendar-picker-indicator {
-  content: url("/Join/assets/img/event.png");
+  content: url("./assets/img/event.png");
   object-fit: contain;
   width: 24px;
   height: 24px;
