@@ -10,41 +10,77 @@ async function initSummary() {
 }
 
 /**
- * Greets the user based on their status (guest or active) and screen type (mobile or desktop).
- * Guest user status is defined by the query parameter of the URL leading from the guest login button to the summary page.
- * This function adjusts the greeting message and user name display accordingly.
+ * Greets the user based on their status (guest or registered) and screen type (mobile or desktop).
  */
 function greetUser() {
-  setRegisteredUser();
   let mobileGreetingShown = setMobileGreetingStatus();
-  if (screenType === "mobile" && !registeredUser && !mobileGreetingShown) {
+  handleMobileGreetings(mobileGreetingShown);
+  handleDesktopGreetings();
+}
+
+/**
+ * Coordinates the two mobile versions of the user greetings (guest or registered user).
+ * Adjusts the greeting message and user name display accordingly.
+ * @param {Boolean} mobileGreetingShown
+ */
+function handleMobileGreetings(mobileGreetingShown) {
+  if (guestUserOnMobileDevice(mobileGreetingShown)) {
     loadHelloPageMobile();
     greetGuestUser("greetingMobile", "userNameMobile");
-  } else if (
-    screenType === "mobile" &&
-    registeredUser &&
-    !mobileGreetingShown
-  ) {
+  } else if (registeredUserOnMobileDevice(mobileGreetingShown)) {
     loadHelloPageMobile();
     document.getElementById("userNameMobile").innerHTML = registeredUser.name;
-  } else if (screenType === "desktop" && !registeredUser) {
+  }
+}
+
+/**
+ * Coordinates the two desktop versions of the user greetings (guest or registered user).
+ */
+function handleDesktopGreetings() {
+  if (guestUserOnDesktopDevice()) {
     showGreeting("greetingDesktop");
     greetGuestUser("greetingDesktop", "userNameDesktop");
-  } else if (screenType === "desktop" && registeredUser) {
+  } else if (registeredUserOnDesktopDevice()) {
     showGreeting("greetingDesktop");
     document.getElementById("userNameDesktop").innerHTML = registeredUser.name;
   }
 }
 
 /**
- * If Login came as Guest, registeredUser will be set on "false"
- * @param {boolean} isGuestUser If Guets login is used, this will be true, else it will be false.
+ * If a guest User logs in on a mobile device the greeting message is shown when calling the Summary Page for the first time.
+ * The message doesnt show again after coming back to the Summary Page from another Page.
+ * @param {Boolean} mobileGreetingShown
+ * @returns the conditions to show the guest user greeting on a mobile device
  */
-function setRegisteredUser() {
-  if (!registeredUser) {
-    sessionStorage.setItem("registeredUser", JSON.stringify(false));
-    registeredUser = false;
-  }
+function guestUserOnMobileDevice(mobileGreetingShown) {
+  return screenType === "mobile" && !registeredUser && !mobileGreetingShown;
+}
+
+/**
+ * If a registered User logs in on a mobile device the greeting message is shown when calling the Summary Page for the first time.
+ * The message doesnt show again after coming back to the Summary Page from another Page.
+ * @param {Boolean} mobileGreetingShown
+ * @returns the conditions to show the registered user greeting on a mobile device
+ */
+function registeredUserOnMobileDevice(mobileGreetingShown) {
+  return screenType === "mobile" && registeredUser && !mobileGreetingShown;
+}
+
+/**
+ * If a guest user logs ins on a desktop device, shows the greeting.
+ * @returns the conditions to show the guest user greeting for desktop devices
+ */
+function guestUserOnDesktopDevice() {
+  return screenType === "desktop" && !registeredUser;
+}
+
+/**
+ * If a registered User logs in on a desktop device, shows the greeting.
+ * @param {Boolean} mobileGreetingShown
+ * @returns the conditions to show the registered user greeting for desktop devices
+ */
+function registeredUserOnDesktopDevice() {
+  return screenType === "desktop" && registeredUser;
 }
 
 /**
@@ -113,13 +149,11 @@ function generateHelloPageHTML() {
  * @param {HTMLElement} helloPage - The HTML element to which the fade-out effect is applied.
  */
 function fadeOutHelloPage(helloPage) {
-  setTimeout(function () {
-    helloPage.classList.add("fadeOut");
-  }, 1100);
-
-  helloPage.addEventListener("transitionend", function () {
-    helloPage.style.display = "none";
-  });
+  setTimeout(() => helloPage.classList.add("fadeOut"), 1000);
+  helloPage.addEventListener(
+    "transitionend",
+    () => (helloPage.style.display = "none")
+  );
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -259,7 +293,7 @@ function getMonth() {
     "Dezember",
   ];
 }
-///////////////////////////////////////////////////////////////////////
+
 ///////////////////////////////////////////////////////////////////////
 
 /**
@@ -290,13 +324,11 @@ function showGreeting(ID) {
   let currenthour = currentHour();
   let greeting = document.getElementById(ID);
 
-  if (currenthour >= 4 && currenthour < 12) {
+  if (currenthour >= 4 && currenthour < 12)
     greeting.innerHTML = "Good morning,";
-  } else if (currenthour >= 12 && currenthour < 18) {
+  else if (currenthour >= 12 && currenthour < 18)
     greeting.innerHTML = "Good afternoon,";
-  } else if (currenthour >= 18 && currenthour < 22) {
+  else if (currenthour >= 18 && currenthour < 22)
     greeting.innerHTML = "Good evening,";
-  } else {
-    greeting.innerHTML = "Good night,";
-  }
+  else greeting.innerHTML = "Good night,";
 }
