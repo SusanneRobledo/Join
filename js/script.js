@@ -389,7 +389,7 @@ function logOut() {
 }
 
 /**
- * Gets mobileGreetingShown value from session storage. If user freshly logged in, the value handed over is false, so the message can be shown.
+ * Gets mobileGreetingShown value from session storage. If user freshly logged in, the value returned is false, so the message can be shown.
  * At the same time, flag is set to true in session storage for the next call of the function, so message wont be shown a again. If user is logged out sets it to false again.
  * @returns mobileGreetingShown: true or false
  */
@@ -397,12 +397,9 @@ function setMobileGreetingStatus() {
   let mobileGreetingShown = JSON.parse(
     sessionStorage.getItem("mobileGreetingShown")
   );
-  if (!mobileGreetingShown) {
+  if (!mobileGreetingShown)
     sessionStorage.setItem("mobileGreetingShown", "true");
-  }
-  if (!loggedIn) {
-    sessionStorage.setItem("mobileGreetingShown", "false");
-  }
+  if (!loggedIn) sessionStorage.setItem("mobileGreetingShown", "false");
   return mobileGreetingShown;
 }
 

@@ -2,7 +2,7 @@
  * Initializes the Summary Page by orchestrating and calling various actions.
  */
 async function initSummary() {
-  //setRegisteredUser();
+  setRegisteredUser();
   greetUser();
   await getDataFromBackend();
   showTotalTasks();
