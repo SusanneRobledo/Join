@@ -15,11 +15,16 @@ async function initSummary() {
  * This function adjusts the greeting message and user name display accordingly.
  */
 function greetUser() {
-  setregisteredUser();
-  if (screenType === "mobile" && !registeredUser) {
+  setRegisteredUser();
+  let mobileGreetingShown = setMobileGreetingStatus();
+  if (screenType === "mobile" && !registeredUser && !mobileGreetingShown) {
     loadHelloPageMobile();
     greetGuestUser("greetingMobile", "userNameMobile");
-  } else if (screenType === "mobile" && registeredUser) {
+  } else if (
+    screenType === "mobile" &&
+    registeredUser &&
+    !mobileGreetingShown
+  ) {
     loadHelloPageMobile();
     document.getElementById("userNameMobile").innerHTML = registeredUser.name;
   } else if (screenType === "desktop" && !registeredUser) {
@@ -35,7 +40,7 @@ function greetUser() {
  * If Login came as Guest, registeredUser will be set on "false"
  * @param {boolean} isGuestUser If Guets login is used, this will be true, else it will be false.
  */
-function setregisteredUser() {
+function setRegisteredUser() {
   if (!registeredUser) {
     sessionStorage.setItem("registeredUser", JSON.stringify(false));
     registeredUser = false;

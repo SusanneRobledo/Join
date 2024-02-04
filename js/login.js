@@ -3,6 +3,7 @@ const headerEl = document.getElementById("header");
 /**calls animation and init functions and gets data from backend */
 function init() {
   handleStartAnimation();
+  setMobileGreetingStatus();
   initForm();
   initCheckboxes();
   initBackNavigator();
