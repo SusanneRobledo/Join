@@ -60,9 +60,8 @@ async function showContacts() {
  * @param {HTMLElement} userDiv The Element we want to work in
  */
 function makeUserDiv(userDiv) {
-  if (!registeredUser) {
-    userDiv.style.display = "none";
-  } else {
+  if (!registeredUser) userDiv.style.display = "none";
+  else {
     userDiv.innerHTML = /*html*/ `
         <figure class="letter_div">YOU</figure>
         <figure class="seperate_div"></figure> 

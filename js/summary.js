@@ -1,12 +1,23 @@
+let registeredUser;
 /**
  * Initializes the Summary Page by orchestrating and calling various actions.
  */
 async function initSummary() {
+  //setRegisteredUser();
   greetUser();
   await getDataFromBackend();
   showTotalTasks();
   showTasks();
   showUpcomingDeadline();
+}
+
+/**
+ * If User logs in as Guest, registeredUser in the session storage will be set to "false".
+ */
+function setRegisteredUser() {
+  if (!registeredUser) {
+    sessionStorage.setItem("registeredUser", JSON.stringify(false));
+  }
 }
 
 /**

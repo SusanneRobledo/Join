@@ -12,7 +12,7 @@ let taskList = [];
 let userList = [];
 let loggedIn;
 let loginData;
-let registeredUser;
+
 let hideSiderMenu;
 let maxUserId;
 let maxTaskId;
@@ -32,11 +32,8 @@ async function initForAllPages() {
  */
 function verifyUserStatus() {
   let status = JSON.parse(localStorage.getItem("loggedIn"));
-  if (status) {
-    loginData = JSON.parse(localStorage.getItem("loginData"));
-  } else {
-    status = JSON.parse(sessionStorage.getItem("loggedIn"));
-  }
+  if (status) loginData = JSON.parse(localStorage.getItem("loginData"));
+  else status = JSON.parse(sessionStorage.getItem("loggedIn"));
   registeredUser = JSON.parse(sessionStorage.getItem("registeredUser"));
   loggedIn = status;
   if (
@@ -47,9 +44,8 @@ function verifyUserStatus() {
     !window.location.href.endsWith("privacy_policy.html") &&
     !window.location.href.endsWith("legal_notes.html") &&
     !loggedIn
-  ) {
+  )
     window.location.href = "./login.html";
-  }
 }
 
 /** Fills 3 important global variables with much used Data */
