@@ -780,6 +780,12 @@ td {
   font-size: 1rem;
   font-weight: 400;
   gap: 1em;
+  min-height: 32px;
+}
+
+.subtask-read-icons {
+  display: flex;
+  gap: 6px;
 }
 
 .checkbox {
