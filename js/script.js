@@ -12,6 +12,7 @@ let taskList = [];
 let userList = [];
 let loggedIn;
 let loginData;
+let registeredUser;
 let hideSiderMenu;
 let maxUserId;
 let maxTaskId;

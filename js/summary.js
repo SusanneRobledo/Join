@@ -1,4 +1,3 @@
-let registeredUser;
 /**
  * Initializes the Summary Page by orchestrating and calling various actions.
  */
