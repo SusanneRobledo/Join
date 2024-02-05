@@ -731,13 +731,13 @@ td {
 }
 
 .footer-btn span.delete-icon {
-  background: url(./assets/img/contacts_deleteContacts_icon.png) no-repeat;
+  background: url(../assets/img/contacts_deleteContacts_icon.png) no-repeat;
   width: 1.5rem;
   height: 1.5rem;
 }
 
 .footer-btn span.edit-icon {
-  background: url(./assets/img/contacts_editContact_icon.png) no-repeat;
+  background: url(../assets/img/contacts_editContact_icon.png) no-repeat;
   width: 1.5rem;
   height: 1.5rem;
 }
@@ -748,12 +748,12 @@ td {
 }
 
 .footer-btn:hover span.delete-icon {
-  background: url(./assets/img/contacts_deleteContacts-active_icon.png)
+  background: url(../assets/img/contacts_deleteContacts-active_icon.png)
     no-repeat;
 }
 
 .footer-btn:hover span.edit-icon {
-  background: url(./assets/img/contacts_editContacts-active_icon.png) no-repeat;
+  background: url(../assets/img/contacts_editContacts-active_icon.png) no-repeat;
 }
 
 .subsection {
