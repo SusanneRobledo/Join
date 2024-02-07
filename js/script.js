@@ -231,7 +231,7 @@ function flyInMenu(wichMenu) {
   }
 }
 
-/**If theres an Arrow, it get hidden with a little delay */
+/** If theres an Arrow, it get hidden with a little delay */
 function hideArrow() {
   setTimeout(() => {
     try {

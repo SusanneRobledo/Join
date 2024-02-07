@@ -11,9 +11,7 @@ function handleStartAnimation() {
 
 /** changes the animation logo if accessed on desktop screen */
 function displayLogoForDesktop() {
-  const loginLogoEl = document.getElementById("login-logo");
-  if (getScreenType() === "desktop")
-    loginLogoEl.src = "./assets/img/join_logo_black.png";
+  if (getScreenType() === "desktop") changeLogo();
 }
 
 /** gets appStarted value from session storage to determin if this is the session launch */
@@ -42,7 +40,7 @@ function getAnimationHtml() {
     />`;
 }
 
-/**Splash screen animation: This function coordinates the splash screen animation by calling three sub-functions with increasing timeouts.
+/** Splash screen animation: This function coordinates the splash screen animation by calling three sub-functions with increasing timeouts.
  * Change of delay requires change of login.css rules (transition property) as well */
 function animateSplashScreen() {
   const SPLASH_DURATION = 1000;
@@ -51,7 +49,7 @@ function animateSplashScreen() {
   setTimeout(removeSplash, SPLASH_DURATION + 1000);
 }
 
-/**Splash screen animation: This functions starts the splash screen animation by adding the 'splash-moving' class to the logo and background container. */
+/** Splash screen animation: This functions starts the splash screen animation by adding the 'splash-moving' class to the logo and background container. */
 function startSplashAnimation() {
   const loginLogoStaticEl = document.getElementById("login-logo-static");
   const splashLoginBgEl = document.getElementById("splash-login-bg");
@@ -61,13 +59,13 @@ function startSplashAnimation() {
   loginLogoStaticEl.classList.add("splash-active");
 }
 
-/**Splash screen animation: This function changes the logo from the white to the black one during the splash screen animation. */
+/** Splash screen animation: This function changes the logo from the white to the black one during the splash screen animation. */
 function changeLogo() {
   const loginLogoEl = document.getElementById("login-logo");
   loginLogoEl.src = "./assets/img/join_logo_black.png";
 }
 
-/**Splash screen animation: This function adds and removes classes to achieve the end result of the animation. */
+/** Splash screen animation: This function adds and removes classes to achieve the end result of the animation. */
 function removeSplash() {
   const splashLoginBgEl = document.getElementById("splash-login-bg");
   const loginLogoEl = document.getElementById("login-logo");
