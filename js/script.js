@@ -129,28 +129,24 @@ window.onresize = function () {
  * @param {string} toUnloadID - The ID of that html-template, that has to be unloaded.
  */
 async function getMatchingTemplate(toLoadID, toUnloadID) {
-  try {
-    let includeElement = document.getElementById(toLoadID);
-    const element = includeElement;
-    file = element.getAttribute("include-templates"); // "assets/templates/desktop_template.html" or mobile_template.html
-    let resp = await fetch(file);
-    if (resp.ok) {
-      element.innerHTML = await resp.text();
+  let includeElement = document.getElementById(toLoadID);
+  const element = includeElement;
+  file = element.getAttribute("include-templates"); // "assets/templates/desktop_template.html" or mobile_template.html
+  let resp = await fetch(file);
+  if (resp.ok) {
+    element.innerHTML = await resp.text();
+  } else {
+    element.innerHTML = "Page not found";
+  }
+  unloadTemplate(toUnloadID);
+  showInitialsHeader(userInitials);
+  markCorrectMenuPoint();
+  if (hideSiderMenu) {
+    if (screenType == "mobile" && loggedIn != true) {
+      hideMenusMobile();
     } else {
-      element.innerHTML = "Page not found";
+      hideMenusDesktop();
     }
-    unloadTemplate(toUnloadID);
-    showInitialsHeader(userInitials);
-    markCorrectMenuPoint();
-    if (hideSiderMenu) {
-      if (screenType == "mobile" && loggedIn != true) {
-        hideMenusMobile();
-      } else {
-        hideMenusDesktop();
-      }
-    }
-  } catch {
-    return;
   }
 }
 
@@ -181,17 +177,13 @@ function showInitialsHeader() {
  */
 function markCorrectMenuPoint() {
   let activeSide = getDocumentName();
-  try {
-    let toChoose = document.getElementById(activeSide + "ID");
-    if (toChoose) {
-      toChoose.classList.add("Choosen_field");
-    } /* else {
+  let toChoose = document.getElementById(activeSide + "ID");
+  if (toChoose) {
+    toChoose.classList.add("Choosen_field");
+  } /* else {
       let helpIcon = document.getElementById("header_help_icon_d");
       helpIcon.classList.add("d-none");
     } */
-  } catch {
-    return;
-  }
 }
 
 /**On some pages, the menu Points shall not be visible. Desktop parts get invisible here */

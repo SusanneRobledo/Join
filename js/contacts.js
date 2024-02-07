@@ -193,12 +193,11 @@ function renderContactDisplayHTML(i, contact) {
 
 /**Unmarks former marked contact, and marks the contact that was choosen. */
 function markContact(i) {
-  try {
-    let formerChoosen = document.querySelector(".Contact_div_choosen");
+  let formerChoosen = document.querySelector(".Contact_div_choosen");
+  if (formerChoosen != null)
     formerChoosen.classList.remove("Contact_div_choosen");
-  } catch {}
   let choosen = document.getElementById("contact_div" + i);
-  choosen.classList.add("Contact_div_choosen");
+  if (choosen != null) choosen.classList.add("Contact_div_choosen");
 }
 
 /**Opening a contact in Stage as overlay.*/
@@ -225,7 +224,7 @@ function closeContactStage() {
   stage.style.display = "none";
 
   if (loaded == "mobile") {
-    var arrow = document.querySelector(".Back_Arrow");
+    let arrow = document.querySelector(".Back_Arrow");
     arrow.parentNode.removeChild(arrow);
   }
 }
@@ -483,7 +482,7 @@ function sortContacts() {
  * @returns true, if the typed Key was a Numbers Key, or false, if not.
  */
 function isNumberKey(evt) {
-  var charCode = evt.which ? evt.which : event.keyCode;
+  let charCode = evt.which ? evt.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)) {
     return false;
   }
