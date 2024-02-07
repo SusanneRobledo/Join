@@ -6,13 +6,13 @@ let selectedContactIds = [];
 let selectedTask = null;
 let taskDestinationStatus;
 
-/**Gets 2 container for further use. */
+/** Gets 2 container for further use. */
 function getAddContactElements() {
   subtaskEl = document.getElementById("subtasks-container");
   backdrop = document.getElementById("backdrop");
 }
 
-/**The order for the functions, so the Add-Task page works correctly. */
+/** The order for the functions, so the Add-Task page works correctly. */
 async function initAddTaskPage() {
   getAddContactElements();
   initSubtaskInput();
@@ -302,7 +302,7 @@ async function addContactWithinTaskForm() {
   document.getElementById("overlay-add-contact-form").reset();
 }
 
-/**validates add task form and calls custom validations if required */
+/** validates add task form and calls custom validations if required */
 async function validateAddTaskForm(e) {
   e.preventDefault();
   const form = e.target;
@@ -314,7 +314,7 @@ async function validateAddTaskForm(e) {
   else await saveTask();
 }
 
-/**Loops through all add task form elements and validates them.
+/** Loops through all add task form elements and validates them.
  * @param {Array} formElements Form elements for add task form.
  */
 function validateAddTaskFormElements(formElements) {
@@ -345,7 +345,7 @@ function validateAddTaskFormElements(formElements) {
   return formIsValid;
 }
 
-/**calls input-specific validation functions.
+/** calls input-specific validation functions.
  * @param {HTMLElement} formElement Form element to be validated.
  */
 function handleCustomValidationForAddTask(formElement) {
@@ -363,7 +363,7 @@ function handleCustomValidationForAddTask(formElement) {
   }
 }
 
-/**validates that category is selected
+/** validates that category is selected
  * @param {HTMLElement} formElement Category input element.
  */
 function validateCategoryInput(formElement) {
@@ -374,7 +374,7 @@ function validateCategoryInput(formElement) {
   }
 }
 
-/**validates that priority is selected
+/** validates that priority is selected
  * @param {HTMLElement} formElement Prio elements container element.
  */
 function validatePrioInput(formElement) {
@@ -391,7 +391,7 @@ function validatePrioInput(formElement) {
   return false;
 }
 
-/**loops through contacts and checks selectedContactIds array to check if the contact is selected. Sets arguments for call of render function for list items.
+/** loops through contacts and checks selectedContactIds array to check if the contact is selected. Sets arguments for call of render function for list items.
  * @param {Array} contacts Array of contacts to be rendered.
  */
 function renderAssignedToContactList(contacts) {
@@ -414,7 +414,7 @@ function renderAssignedToContactList(contacts) {
   list.innerHTML = html;
 }
 
-/**filters assigned to contact list based on user input. checks for each name if it starts with user input */
+/** filters assigned to contact list based on user input. checks for each name if it starts with user input */
 function filterAssignedToContacts() {
   const searchTerm = document
     .getElementById("assigned-to-input")
@@ -424,7 +424,7 @@ function filterAssignedToContacts() {
   renderFilteredAssignedToContacts(searchTerm, listItems);
 }
 
-/**Shows all contact options when user deletes text from search box.
+/** Shows all contact options when user deletes text from search box.
  * @param {NodeList} listItems li elements to be shown.
  */
 function resetFilteredAssignedtoContacts(listItems) {
@@ -434,7 +434,7 @@ function resetFilteredAssignedtoContacts(listItems) {
   }
 }
 
-/**Hides or shows list items based on user input.
+/** Hides or shows list items based on user input.
  * @param {string} searchTerm String entered by user to filter contact list.
  * @param {NodeList} listItems li elements representing contacts.
  */

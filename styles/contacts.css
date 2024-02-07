@@ -236,11 +236,11 @@ body {
 }
 
 #delete_contact_btn:hover img {
-  content: url("./assets/img/contacts_deleteContacts-active_icon.png");
+  content: url("../assets/img/contacts_deleteContacts-active_icon.png");
 }
 
 #edit_contact_btn:hover img {
-  content: url("./assets/img/contacts_editContacts-active_icon.png");
+  content: url("../assets/img/contacts_editContacts-active_icon.png");
 }
 
 .Contacts_stage_data p {
@@ -564,7 +564,7 @@ img {
 }
 
 .Cancel_btn:hover img {
-  content: url("./assets/img/cancel_icon_blue.png");
+  content: url("../assets/img/cancel_icon_blue.png");
 }
 
 #contacts_form_cancel_btn,
@@ -637,7 +637,7 @@ img {
     display: none;
     top: -30px;
     right: 30px;
-    content: url("./assets/img/close-white.png");
+    content: url("../assets/img/close-white.png");
   }
 
   .Close_btn:hover {
