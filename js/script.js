@@ -231,24 +231,22 @@ function flyInMenu(wichMenu) {
   }
 }
 
-/** If theres an Arrow, it get hidden with a little delay */
+/** If theres an Arrow, it gets hidden with a little delay */
 function hideArrow() {
-  setTimeout(() => {
-    try {
-      let arrow = document.querySelector(".Back_Arrow");
+  let arrow = document.querySelector(".Back_Arrow");
+  if (arrow != null) {
+    setTimeout(() => {
       arrow.classList.toggle("d-none");
-    } catch {
-      console.log(Error);
-    }
-  }, 200);
+    }, 200);
+  }
 }
 
 /**
  * Returns name of actual page, for marking the right Spot on header/footer in "markCorrectMenuPoint()"
  */
 function getDocumentName() {
-  var path = window.location.pathname;
-  var path = path.split("./").pop(); //CHANGED
+  let path = window.location.pathname;
+  path = path.split("./").pop(); //CHANGED
   let page = path.split(".html");
   return page[0];
 }

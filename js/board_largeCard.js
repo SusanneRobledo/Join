@@ -68,7 +68,7 @@ function slideOutCard(ID) {
   }, 200);
 }
 
-/**Sets up functions for subtask input and focus to input element */
+/** Sets up functions for subtask input and focus to input element */
 function initSubtaskInput() {
   subtaskEl.firstElementChild.addEventListener("focus", toggleSubtaskIcons);
   subtaskEl.firstElementChild.addEventListener("blur", toggleSubtaskIcons);
@@ -86,7 +86,7 @@ function initSubtaskInput() {
     .addEventListener("keypress", addSubtask);
 }
 
-/**Initializes select inputs to offer dropdown functionality.
+/** Initializes select inputs to offer dropdown functionality.
  * Adds functions to dropdown options.
  */
 function initSelectInputs() {
@@ -111,7 +111,7 @@ function initSelectInputs() {
   }
 }
 
-/**sets up assigned to search field for filtering assigned to contact list. */
+/** sets up assigned to search field for filtering assigned to contact list. */
 function activateSearchInput(e) {
   e.stopPropagation();
   formControl = document.getElementById("assigned-to-form-control");
@@ -134,11 +134,9 @@ function activateSearchInput(e) {
   backdrop.addEventListener("click", deactivateSearchInput);
 }
 
-/**Resets assigned to search field to read only mode. */
+/** Resets assigned to search field to read only mode. */
 function deactivateSearchInput(e) {
-  try {
-    e.stopPropagation();
-  } catch {}
+  if (e != undefined) e.stopPropagation();
   formControl = document.getElementById("assigned-to-form-control");
   const input = formControl.querySelector("input");
   const inputContainer = formControl.querySelector(".input");
@@ -168,9 +166,7 @@ function filterContactListByName(nameQuery) {
     const names = contact.name.toLowerCase().split(" ");
     for (let i = 0; i < names.length; i++) {
       const name = names[i];
-      if (name.startsWith(nameQuery)) {
-        return true;
-      }
+      if (name.startsWith(nameQuery)) return true;
     }
     return false;
   });
@@ -216,9 +212,7 @@ function getPriorityFromForm() {
     .querySelectorAll("input");
   for (let i = 0; i < prioInputs.length; i++) {
     const prioInput = prioInputs[i];
-    if (prioInput.checked) {
-      return prioInput.value;
-    }
+    if (prioInput.checked) return prioInput.value;
   }
 }
 
@@ -292,8 +286,6 @@ async function taskDestination(target) {
  */
 async function getTaskDestination() {
   let getJSON = localStorage.getItem("taskDestination");
-  if (getJSON) {
-    taskDestinationStatus = JSON.parse(getJSON);
-  }
+  if (getJSON) taskDestinationStatus = JSON.parse(getJSON);
   localStorage.setItem("taskDestination", JSON.stringify("todo"));
 }
