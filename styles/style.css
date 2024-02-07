@@ -467,6 +467,10 @@ input[type="date"] {
   justify-content: start;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
+
 .justify-content-space-btw {
   justify-content: space-between;
 }

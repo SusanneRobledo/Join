@@ -350,7 +350,7 @@ function showBlockAlert() {
             </div>
         </div>
     `;
-  deleteAlert.style.display = "block";
+  deleteAlert.style.display = "flex";
 }
 
 /**Fills the delete-confirm-alert with information and functions. */
@@ -359,14 +359,14 @@ function showConfirmAlert(i) {
 
   deleteAlert.innerHTML = /*html*/ `
         <div class="align-items-center">
-            <p>Do you really want to delete <br><div id="show_deleting_name">${contactList[i].name}</div>?</p>
-            <div id="" class="delete_btn_div">
+            <p>Do you really want to delete</p><div class="delete_name_wrapper"><p id="show_deleting_name">${contactList[i].name}</p><div>?</div></div>
+            <div class="delete_btn_div">
                 <button class="btn btn-secondary" onclick="closeContactProcess('delete_question')">Cancel</button>
                 <button id='deleteBtn' onclick="deleteContact(${i}), closeContactProcess('delete_question'), closeContactStage()" class="btn btn-primary">Confirm</button>
             </div>
         </div>
     `;
-  deleteAlert.style.display = "block";
+  deleteAlert.style.display = "flex";
 }
 
 /**

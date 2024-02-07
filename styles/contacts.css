@@ -453,10 +453,10 @@ img {
 #delete_question {
   position: fixed;
   display: none;
-  top: 30vh;
-  left: 40vw;
-  width: 30vw;
-  width: clamp(250px, 30vw, 350px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.8rem 1.5rem;
   background-color: white;
   box-shadow: 0 0 9px 3px rgba(23, 23, 23, 0.25);
   z-index: 90;
@@ -465,7 +465,24 @@ img {
   border-radius: 1.875em;
 }
 
+#delete_question div {
+  gap: 14px;
+}
+
+#delete_question p {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0rem;
+}
+
+.delete_name_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
 #show_deleting_name {
+  text-align: center;
   color: #29abe2;
 }
 
@@ -651,10 +668,6 @@ img {
     background-color: white;
     z-index: 50;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  #delete_question {
-    left: 14vw;
   }
 
   @media (max-width: 664px) {
