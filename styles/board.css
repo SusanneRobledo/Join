@@ -372,7 +372,7 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1.5em;
+  gap: 1.19em;
   border-radius: 1.5em;
   background: white;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
@@ -444,6 +444,11 @@ input {
   font-weight: 700;
   line-height: 1.2em;
   margin-bottom: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .cardSmall .description {
@@ -495,10 +500,10 @@ input {
 
 .card-footer {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-grow: 1;
+  /* display: flex;
+  justify-content: space-between; */
+  /* align-items: flex-end;
+  flex-grow: 1; */
 }
 
 .profileBadges {
@@ -516,7 +521,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: center;
+  /*justify-content: center;*/
   padding: 0 0.2rem;
 }
 
