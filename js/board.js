@@ -232,7 +232,12 @@ function renderAssignedBadges() {
     badge.innerHTML = "";
     for (let j = 0; j < assignedContacts.length; j++) {
       const assignedContact = assignedContacts[j];
-      badge.innerHTML += generateBadgeHTML(assignedContact);
+      if (j < 3) badge.innerHTML += generateBadgeHTML(assignedContact);
+      else if (j === 3)
+        badge.innerHTML += generateBadgeHTML({
+          color: "lightgrey",
+          initials: "+",
+        });
     }
   }
 }
