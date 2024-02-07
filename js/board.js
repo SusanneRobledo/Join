@@ -244,13 +244,13 @@ function renderAssignedBadges() {
  * @returns color
  */
 function assignLabelColor(category) {
-  if (category === "User Story") {
-    return "#0038ff"; // Blue color
-  } else if (category === "Technical Task") {
-    return "#1FD7C1"; // Turquoise color
-  }
-  // Default color Orange, if category doesn't match
-  return "#FF7A00";
+  if (category === "User Story") return "#0038ff"; // Blue color
+  else if (category === "Technical Task") return "#1FD7C1"; // Turquoise color
+  else if (category === "Marketing") return "#9327FF"; // Violet
+  else if (category === "Testing") return "#FFBB2C"; // Yellow
+  else if (category === "Design") return "#FC71FF"; // Pink
+  else if (category === "Bug Fix") return "#462F8A"; // Deep Purple
+  else if (category === "Research") return "#FF7A01"; // Orange
 }
 
 /**
@@ -354,11 +354,8 @@ function renderSubtasksList() {
 function getImgBySubtaskStatus(subtask) {
   let srcImg;
   let subtaskStatus = subtask["status"];
-  if (subtaskStatus === "todo") {
-    srcImg = "unchecked";
-  } else {
-    srcImg = "checked";
-  }
+  if (subtaskStatus === "todo") srcImg = "unchecked";
+  else srcImg = "checked";
   return srcImg;
 }
 
@@ -371,11 +368,9 @@ async function updateSubtasksStatus(taskID) {
   const task = getTaskByID(taskID);
   subtasks = task["subtasks"];
   for (let i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].classList.contains("checked")) {
+    if (checkboxes[i].classList.contains("checked"))
       subtasks[i].status = "done";
-    } else {
-      subtasks[i].status = "todo";
-    }
+    else subtasks[i].status = "todo";
   }
   await setItemInBackend("taskList", JSON.stringify(taskList));
 }
@@ -406,9 +401,8 @@ function searchTask() {
   for (i in taskList) {
     let taskTitle = taskList[i].title.toLowerCase();
     let taskDesc = taskList[i].description.toLowerCase();
-    if (taskTitle.includes(term) || taskDesc.includes(term)) {
+    if (taskTitle.includes(term) || taskDesc.includes(term))
       foundTasks.push(taskList[i].id);
-    }
   }
   hideNotSearchedTasks(foundTasks);
 }
@@ -419,11 +413,9 @@ function searchTask() {
  */
 function hideNotSearchedTasks(foundTasks) {
   for (task of taskList) {
-    if (foundTasks.indexOf(task.id) + 1) {
+    if (foundTasks.indexOf(task.id) + 1)
       //+1 because if the index is 0, it will be handled as 'false'!
       document.getElementById(task.id).style.display = "flex";
-    } else {
-      document.getElementById(task.id).style.display = "none";
-    }
+    else document.getElementById(task.id).style.display = "none";
   }
 }
