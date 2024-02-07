@@ -19,7 +19,11 @@ async function initAddTaskPage() {
   initForm();
   if (location.href.includes("add_task.html")) {
     initClearBtn();
-    document.getElementById('submit-task-form-btn').addEventListener('click', () => { document.getElementById('addtask-form').requestSubmit() });
+    document
+      .getElementById("submit-task-form-btn")
+      .addEventListener("click", () => {
+        document.getElementById("addtask-form").requestSubmit();
+      });
     initAddContactOverlayForm();
     document
       .getElementById("add-contact-btn")
@@ -31,7 +35,7 @@ async function initAddTaskPage() {
   renderAssignedToContactList(contactList);
   initSelectInputs();
   renderSubtasksInForm();
-  setMinDateForPicker()
+  setMinDateForPicker();
   getTaskDestination();
 }
 
@@ -149,7 +153,7 @@ function toggleSubtaskIcons() {
 
 /**sets focus to provided element
  * @param {HTMLElement} element Element which the focus is set to.
-*/
+ */
 function setFocusToElement(element) {
   element.focus();
 }
@@ -166,11 +170,14 @@ function addSubtask(ev) {
   if (ev.type === "keypress" && ev.key === "Enter") {
     ev.preventDefault();
   }
-  if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
+  if (
+    input.value &&
+    (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))
+  ) {
     subtasks.push({ text: input.value, status: "todo" });
     input.value = "";
     input.focus();
-    if (ev.type === 'click') {
+    if (ev.type === "click") {
       toggleSubtaskIcons();
     }
     renderSubtasksInForm();
@@ -253,16 +260,13 @@ async function validateOverlayAddcontactForm(e) {
   for (let i = 0; i < formElements.length; i++) {
     const formElement = formElements[i];
     formElement.checkValidity();
-    if (!formElement.validity.valid) {
-      formIsValid = false;
-    }
+    if (!formElement.validity.valid) formIsValid = false;
     document.getElementById(`${formElement.id}-error`).textContent =
       formElement.validationMessage;
   }
   e.preventDefault();
-  if (!formIsValid) {
-    form.classList.add("is-validated");
-  } else {
+  if (!formIsValid) form.classList.add("is-validated");
+  else {
     await addContactWithinTaskForm();
     form.parentElement.close();
     document.getElementById("dropdown-arrow").dispatchEvent(new Event("click"));
@@ -277,13 +281,11 @@ function validateDueDateInput(formElement) {
   today.setHours(0, 0, 0, 0);
   let inputDate = new Date(formElement.value);
   inputDate.setHours(0, 0, 0, 0);
-  if (inputDate < today) {
+  if (inputDate < today)
     formElement.setCustomValidity("Date must not be in the past.");
-  } else if (formElement.validity.valueMissing) {
+  else if (formElement.validity.valueMissing)
     formElement.setCustomValidity("This field is required.");
-  } else {
-    formElement.setCustomValidity("");
-  }
+  else formElement.setCustomValidity("");
 }
 
 /**creates contact, saves it in backend, adds it to the selected assigned to options, adds contact bubble and resets add contact form */
@@ -308,11 +310,8 @@ async function validateAddTaskForm(e) {
     'input:not([type="radio"]):not(.no-validation), textarea, div.custom-validation'
   );
   let formIsValid = validateAddTaskFormElements(formElements);
-  if (!formIsValid) {
-    form.classList.add("is-validated");
-  } else {
-    await saveTask();
-  }
+  if (!formIsValid) form.classList.add("is-validated");
+  else await saveTask();
 }
 
 /**Loops through all add task form elements and validates them.
@@ -326,7 +325,9 @@ function validateAddTaskFormElements(formElements) {
       handleCustomValidationForAddTask(formElement);
     }
     if (formElement.id === "prio-inputs") {
-      if (!validatePrioInput(formElement)) { formIsValid = false; }
+      if (!validatePrioInput(formElement)) {
+        formIsValid = false;
+      }
     } else {
       document.getElementById(`${formElement.id}-error`).textContent =
         formElement.validationMessage;
@@ -381,8 +382,7 @@ function validatePrioInput(formElement) {
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
     if (input.checked) {
-      document.getElementById(`${formElement.id}-error`).textContent =
-        "";
+      document.getElementById(`${formElement.id}-error`).textContent = "";
       return true;
     }
   }
@@ -460,5 +460,5 @@ const currentDate = new Date().toISOString().split("T")[0];
 
 // Set the min attribute of the input field to the current date
 function setMinDateForPicker() {
-  document.getElementById("due-date-input").min = currentDate
+  document.getElementById("due-date-input").min = currentDate;
 }
