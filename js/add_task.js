@@ -296,27 +296,33 @@ function validateAddTaskFormElements(formElements) {
   let formIsValid = true;
   for (let i = 0; i < formElements.length; i++) {
     const formElement = formElements[i];
-    if (formElement.classList.contains("custom-validation")) {
+    if (isCustomValidationField(formElement)) {
       handleCustomValidationForAddTask(formElement);
     }
-    if (formElement.id === "prio-inputs") {
-      if (!validatePrioInput(formElement)) {
-        formIsValid = false;
-      }
-    } else {
+    if (formElement.id === "prio-inputs")
+      formIsValid = validatePrioInput(formElement);
+    else {
       updateErrorContainer(formElement);
-      if (formIsNotValid(formElement)) {
-        formIsValid = false;
-      }
+      if (formIsNotValid(formElement)) formIsValid = false;
     }
-    if (
-      formElement.id === "assigned-to-input" ||
-      formElement.id === "category-input"
-    ) {
-      formElement.readOnly = true;
-    }
+    disableReadOnlyFields(formElement);
   }
   return formIsValid;
+}
+
+/** Condition for it to be a Custom Validation Field */
+function isCustomValidationField(formElement) {
+  return formElement.classList.contains("custom-validation");
+}
+
+/** Disables read-only fields based on their IDs.
+ * @param {HTMLElement} formElement The form element to check for read-only.
+ */
+function disableReadOnlyFields(formElement) {
+  const readOnlyIds = ["assigned-to-input", "category-input"];
+  if (readOnlyIds.includes(formElement.id)) {
+    formElement.readOnly = true;
+  }
 }
 
 /** calls input-specific validation functions.
@@ -335,32 +341,6 @@ function handleCustomValidationForAddTask(formElement) {
       validateDueDateInput(formElement);
       break;
   }
-}
-
-/** validates that category is selected
- * @param {HTMLElement} formElement Category input element.
- */
-function validateCategoryInput(formElement) {
-  if (formElement.value === "Select task category")
-    formElement.setCustomValidity("This field is required.");
-  else formElement.setCustomValidity("");
-}
-
-/** validates that priority is selected
- * @param {HTMLElement} formElement Prio elements container element.
- */
-function validatePrioInput(formElement) {
-  const inputs = formElement.getElementsByTagName("input");
-  for (let i = 0; i < inputs.length; i++) {
-    const input = inputs[i];
-    if (input.checked) {
-      document.getElementById(`${formElement.id}-error`).textContent = "";
-      return true;
-    }
-  }
-  document.getElementById(`${formElement.id}-error`).textContent =
-    "This field is required";
-  return false;
 }
 
 /** loops through contacts and checks selectedContactIds array to check if the contact is selected. Sets arguments for call of render function for list items.

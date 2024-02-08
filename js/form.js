@@ -163,3 +163,29 @@ function collapseDropdown() {
   listContainer.classList.toggle("d-none");
   backdrop.classList.toggle("d-none");
 }
+
+/** validates that category is selected
+ * @param {HTMLElement} formElement Category input element.
+ */
+function validateCategoryInput(formElement) {
+  if (formElement.value === "Select task category")
+    formElement.setCustomValidity("This field is required.");
+  else formElement.setCustomValidity("");
+}
+
+/** validates that priority is selected
+ * @param {HTMLElement} formElement Prio elements container element.
+ */
+function validatePrioInput(formElement) {
+  const inputs = formElement.getElementsByTagName("input");
+  for (let i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    if (input.checked) {
+      document.getElementById(`${formElement.id}-error`).textContent = "";
+      return true;
+    }
+  }
+  document.getElementById(`${formElement.id}-error`).textContent =
+    "This field is required";
+  return false;
+}
