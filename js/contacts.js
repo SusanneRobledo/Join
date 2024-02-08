@@ -1,22 +1,3 @@
-let ballColorCollection = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#1FD7C1",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
-// If no Color: #D1D1D1
-
 let processH1;
 let processP;
 let nameField;
@@ -320,22 +301,6 @@ async function createContact() {
   };
   contactList.push(newContact);
   return newContact;
-}
-
-/**Counts ID's in backend, and returns one for the new contact. */
-async function getContactID() {
-  let id = await getItemFromBackend("contactIDcounter");
-  let newID = Number(id) + 1;
-  await setItemInBackend("contactIDcounter", newID);
-  return newID;
-}
-
-/**
- * Picks a random color for the new contact
- */
-function getColor() {
-  let random = Math.floor(Math.random() * 15);
-  return ballColorCollection[random];
 }
 
 /**

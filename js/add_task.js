@@ -248,21 +248,6 @@ function triggerDropdownArrowClick() {
   document.getElementById("dropdown-arrow").dispatchEvent(new Event("click"));
 }
 
-/**validates due date input to ensure it's neither empty nor the selected date is in the past
- * @param {HTMLElement} formElement Input element for due date to be validated.
- */
-function validateDueDateInput(formElement) {
-  let today = new Date();
-  today.setHours(0, 0, 0, 0);
-  let inputDate = new Date(formElement.value);
-  inputDate.setHours(0, 0, 0, 0);
-  if (inputDate < today)
-    formElement.setCustomValidity("Date must not be in the past.");
-  else if (formElement.validity.valueMissing)
-    formElement.setCustomValidity("This field is required.");
-  else formElement.setCustomValidity("");
-}
-
 /**creates contact, saves it in backend, adds it to the selected assigned to options, adds contact bubble and resets add contact form */
 async function addContactWithinTaskForm() {
   const newContact = await createContact();

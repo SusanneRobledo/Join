@@ -189,3 +189,18 @@ function validatePrioInput(formElement) {
     "This field is required";
   return false;
 }
+
+/**validates due date input to ensure it's neither empty nor the selected date is in the past
+ * @param {HTMLElement} formElement Input element for due date to be validated.
+ */
+function validateDueDateInput(formElement) {
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let inputDate = new Date(formElement.value);
+  inputDate.setHours(0, 0, 0, 0);
+  if (inputDate < today)
+    formElement.setCustomValidity("Date must not be in the past.");
+  else if (formElement.validity.valueMissing)
+    formElement.setCustomValidity("This field is required.");
+  else formElement.setCustomValidity("");
+}
