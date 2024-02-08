@@ -229,6 +229,14 @@ textarea {
   min-height: 50px;
 }
 
+#cancel-subtask {
+  margin-right: 3px;
+}
+
+#save-subtask {
+  margin-left: 3px;
+}
+
 .input input {
   cursor: inherit;
 }
@@ -255,6 +263,12 @@ textarea {
   display: none;
 }
 
+.subtask-read-icons,
+.subtask-edit-icons {
+  display: flex;
+  gap: 4px;
+}
+
 .subtask:not(.subtask-edit):hover {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.7em;
@@ -265,7 +279,7 @@ textarea {
 }
 
 .subtask:not(.subtask-edit):hover .subtask-read-icons {
-  display: block;
+  display: flex;
 }
 
 .subtask-edit .subtask-read-icons {

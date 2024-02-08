@@ -782,11 +782,15 @@ td {
 .subtask {
   display: flex;
   align-items: center;
-  padding: 0em 1em 0em 1em;
+  padding: 0em 0.35em 0em 0.3em;
   font-size: 1rem;
   font-weight: 400;
-  gap: 1em;
   min-height: 32px;
+}
+
+.subtask input {
+  margin-right: 16px;
+  text-overflow: ellipsis;
 }
 
 .subtask-read-icons {
@@ -795,6 +799,7 @@ td {
 }
 
 .checkbox {
+  margin-right: 16px;
   cursor: pointer;
 }
 
