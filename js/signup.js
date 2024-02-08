@@ -21,20 +21,32 @@ async function validateSignUpForm(e) {
   }
 }
 
-/**Validates input elements for sign up form.
+/** Validates all the input elements of the sign up form by looping through every element.
  * @param {HTMLElement} form Form element.
  */
 function validateSignUpFormElements(form) {
-  let formIsValid = true;
   const formElements = form.querySelectorAll("input, textarea, select");
+  let formIsValid = true;
   for (let i = 0; i < formElements.length; i++) {
     const formElement = formElements[i];
     validateSignUpFormElement(formElement);
-    if (!formElement.validity.valid) formIsValid = false;
-    document.getElementById(`${formElement.id}-error`).textContent =
-      formElement.validationMessage;
+    if (formIsNotValid(formElement)) {
+      formIsValid = false;
+      updateErrorContainer(formElement);
+    }
   }
   return formIsValid;
+}
+
+/** Condition for the invalid form Element */
+function formIsNotValid(formElement) {
+  return !formElement.validity.valid;
+}
+
+/** Updates the Container with the error message underneath the input field */
+function updateErrorContainer(formElement) {
+  let errorContainer = document.getElementById(`${formElement.id}-error`);
+  errorContainer.textContent = formElement.validationMessage;
 }
 
 /** Validates a single element of sign up form.
@@ -66,7 +78,6 @@ function validateNewUser(formElement) {
   const isEmailRegistered = userList.some(
     (user) => user.email.toLowerCase() === email
   );
-
   if (!isEmailRegistered) formElement.setCustomValidity("");
   else
     formElement.setCustomValidity(
