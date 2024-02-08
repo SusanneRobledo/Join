@@ -236,7 +236,7 @@ function renderAssignedBadges() {
       else if (j === 3)
         badge.innerHTML += generateBadgeHTML({
           color: "lightgrey",
-          initials: "+",
+          initials: `+${assignedContacts.length - 3}`,
         });
     }
   }
