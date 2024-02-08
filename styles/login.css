@@ -61,6 +61,10 @@ main {
   margin-left: 5px;
 }
 
+#accept-privacy-policy.checkbox {
+  margin-right: 6px;
+}
+
 footer {
   display: flex;
   flex-wrap: wrap;
@@ -171,6 +175,7 @@ select {
   flex-direction: column;
   gap: 1em;
   width: 100%;
+  max-width: 422px;
   margin-block: 2em;
   padding-inline: 0.5em;
   font-size: var(--fs-small);
