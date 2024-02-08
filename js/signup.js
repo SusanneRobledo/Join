@@ -9,11 +9,11 @@ function init() {
 /**validates all fields are filled out and password entries match each other. */
 async function validateSignUpForm(e) {
   const form = e.target;
-  let formIsValid = validateSignUpFormElements(form);
   e.preventDefault();
-  if (!formIsValid) {
-    form.classList.add("is-validated");
-  } else {
+
+  let formIsValid = validateSignUpFormElements(form);
+  if (!formIsValid) form.classList.add("is-validated");
+  else {
     let newUser = await addUser();
     await newUserToContact(newUser);
     saveContacts();
@@ -30,39 +30,51 @@ function validateSignUpFormElements(form) {
   for (let i = 0; i < formElements.length; i++) {
     const formElement = formElements[i];
     validateSignUpFormElement(formElement);
-    if (!formElement.validity.valid) {
-      formIsValid = false;
-    }
+    if (!formElement.validity.valid) formIsValid = false;
     document.getElementById(`${formElement.id}-error`).textContent =
       formElement.validationMessage;
   }
   return formIsValid;
 }
 
-/**Validates a single element of sign up form.
+/** Validates a single element of sign up form.
  * @param {HTMLElement} formElement Input element to be validated.
  */
 function validateSignUpFormElement(formElement) {
-  if (formElement.id === "confirm-password-input") {
+  if (formElement.id === "confirm-password-input")
     validatePasswordConfirmation(formElement);
-  } else if (formElement.id === "name-input") {
-    validateName(formElement);
-  }
+  else if (formElement.id === "name-input") validateName(formElement);
+  else if (formElement.id === "email-input") validateNewUser(formElement);
   formElement.checkValidity();
 }
 
-/**Validates name in sign up form to ensure both first and last name have been entered.
+/** Validates name in sign up form to ensure both first and last name have been entered.
  * @param {HTMLElement} formElement Input element.
  */
 function validateName(formElement) {
-  if (formElement.value.trim().split(" ").length > 1) {
+  if (formElement.value.trim().split(" ").length > 1)
     formElement.setCustomValidity("");
-  } else {
-    formElement.setCustomValidity("Please enter first and last name.");
-  }
+  else formElement.setCustomValidity("Please enter first and last name.");
 }
 
-/**gets values from add user form and adds a new user to array, then saves array to backend
+/** Checks if the email is already registered by comparing the input to the mails in the array.
+ * @param {HTMLElement} formElement Input element.
+ */
+function validateNewUser(formElement) {
+  const emailInput = document.getElementById("email-input");
+  const email = emailInput.value.trim().toLowerCase();
+  const isEmailRegistered = userList.some(
+    (user) => user.email.toLowerCase() === email
+  );
+
+  if (!isEmailRegistered) formElement.setCustomValidity("");
+  else
+    formElement.setCustomValidity(
+      "A user with this email address already exists. Please log in or register with a different email address."
+    );
+}
+
+/** gets values from add user form and adds a new user to array, then saves array to backend
  * @returns the new USer for further work.
  */
 async function addUser() {
@@ -104,9 +116,7 @@ function showSignUpNotification(elementId, refElementId) {
     document.getElementById(refElementId).getBoundingClientRect().top + "px";
   document.documentElement.style.setProperty("--notification-top-target", top);
   document.getElementById(elementId).classList.add("triggered");
-  setTimeout(() => {
-    window.location.href = "./login.html";
-  }, 800);
+  setTimeout(() => (window.location.href = "./login.html"), 800);
 }
 
 /**adds function to privacy policy checkbox and disables button */
