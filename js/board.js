@@ -111,45 +111,6 @@ function generateMenuItems(task) {
   return menuItems;
 }
 
-/** Gets the right parameters to call the moveToMobile function by matching it with the category (the Menu item)
- * and returns the function to call, so the task can be transferred into the selected category.
- */
-function getMoveFunctionByStatus(task, category) {
-  switch (category) {
-    case "todo":
-      return `moveToMobile(${task.id}, 'todo', event)`;
-    case "inprogress":
-      return `moveToMobile(${task.id}, 'inprogress', event)`;
-    case "feedback":
-      return `moveToMobile(${task.id}, 'feedback', event)`;
-    case "done":
-      return `moveToMobile(${task.id}, 'done', event)`;
-  }
-}
-
-/** Sets the distance of the Menu to the top of the SmallCard and calls the FlyIn Funktion to make the Menu visible.
- * the event propagation stops the onclick event to open LargeCard.
- */
-function openMobileMoveMenu(taskId, event) {
-  event.stopPropagation();
-  let mobileMoveBtn = document.getElementById(`mobile-move-${taskId}`);
-  let menuContainer = document.getElementById(`mobile-move-menu-${taskId}`);
-  menuContainer.style.top = `${mobileMoveBtn.offsetTop + 40}px`;
-  flyInMenu(`mobile-move-menu-${taskId}`);
-}
-
-/** Gets the Index belonging to the Task and saves the new status to move it into another category column.
- * Updates the TaskList Array in the Backend and Renders the HTML to display the Task in the right Columns.
- * the event propagation stops the onclick event to open LargeCard.
- */
-async function moveToMobile(task, category, event) {
-  event.stopPropagation();
-  const taskIndex = getTaskIndexByID(task);
-  taskList[taskIndex]["status"] = category;
-  await setItemInBackend("taskList", JSON.stringify(taskList));
-  renderAllContainersHTML();
-}
-
 /**
  * Renders the Section that displays the progress on the Subtasks on the Small Card of a specific filtered Task.
  * First, it checks if there are subtasks belonging to the filtered Task and hides the section, if it is empty (no subtasks).
