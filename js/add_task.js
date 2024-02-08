@@ -91,55 +91,6 @@ function initAssignedToSelectItems(list) {
   }
 }
 
-/**sets category dropdown input to selected value and collapses dropdown */
-function selectCategory(e) {
-  const input = document.getElementById("category-input");
-  input.value = e.target.textContent;
-  collapseDropdown();
-}
-
-/**expands or collapses a clicked dropdown based on its current state */
-function toggleDropdown(ev) {
-  ev.stopPropagation();
-  if (ev.currentTarget.tagName === "DIV") {
-    formControl = ev.currentTarget.parentElement;
-  } else {
-    formControl = ev.currentTarget.parentElement.parentElement;
-  }
-  const listContainer = formControl.querySelector(".select-options-container");
-  if (listContainer.classList.contains("d-none")) {
-    expandDropdown();
-  } else {
-    collapseDropdown();
-  }
-}
-
-/**expands dropdown: changing arrow image from down to up, displaying the list with options and setting a backdrop so nothing else can be selected */
-function expandDropdown() {
-  const inputContainer = formControl.querySelector(".input");
-  const dropdownImg = inputContainer.querySelector("img");
-  const listContainer = formControl.querySelector(".select-options-container");
-  dropdownImg.src = "./assets/img/arrow_dropdown_up.png";
-  backdrop.addEventListener("click", collapseDropdown);
-  inputContainer.style.zIndex = 2;
-  listContainer.style.zIndex = 1;
-  listContainer.classList.toggle("d-none");
-  backdrop.classList.toggle("d-none");
-}
-
-/**collapses dropdown: changing arrow image from up to down, hiding the options list and backdrop */
-function collapseDropdown() {
-  const inputContainer = formControl.querySelector(".input");
-  const dropdownImg = inputContainer.querySelector("img");
-  const listContainer = formControl.querySelector(".select-options-container");
-  dropdownImg.src = "./assets/img/arrow_dropdown_down.png";
-  backdrop.removeEventListener("click", collapseDropdown);
-  inputContainer.style.zIndex = 0;
-  listContainer.style.zIndex = 0;
-  listContainer.classList.toggle("d-none");
-  backdrop.classList.toggle("d-none");
-}
-
 /**toggles the subtask icons for either default (+) or editing (cancel and save) */
 function toggleSubtaskIcons() {
   if (subtaskEl.firstElementChild.value === "") {
@@ -167,21 +118,22 @@ function cancelSubtask() {
 /**adds subtask to array, resets subtask input to default and renders subtask list */
 function addSubtask(ev) {
   const input = document.getElementById("subtasks-input");
-  if (ev.type === "keypress" && ev.key === "Enter") {
-    ev.preventDefault();
-  }
-  if (
-    input.value &&
-    (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))
-  ) {
+  if (ev.type === "keypress" && ev.key === "Enter") ev.preventDefault();
+  if (canSubtaskBeAdded(ev, input)) {
     subtasks.push({ text: input.value, status: "todo" });
     input.value = "";
     input.focus();
-    if (ev.type === "click") {
-      toggleSubtaskIcons();
-    }
+    if (ev.type === "click") toggleSubtaskIcons();
     renderSubtasksInForm();
   }
+}
+
+/** Subtask can be added if the field contains a value and user clicks or presses key */
+function canSubtaskBeAdded(ev, input) {
+  return (
+    input.value &&
+    (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))
+  );
 }
 
 /**loops through subtasksList array and calls render function for each subtask */
@@ -224,53 +176,76 @@ function updateSubtask(index) {
   subtaskListEl.innerHTML = renderListItemHtml(subtaskText, index);
 }
 
-/**changes html (background-color and checkbox) of assigned to option reflecting user's (de)selection of option */
+/** changes html (background-color and checkbox) of assigned to option reflecting user's (de)selection of option */
 function toggleContactSelection(event) {
   const listItem = event.currentTarget;
   listItem.classList.toggle("selected");
   const selectedContactsEl = document.getElementById("selected-contacts");
-  if (listItem.classList.contains("selected")) {
-    selectedContactIds.push(listItem.value);
-    listItem.querySelector("img").src =
-      "./assets/img/checkbox-checked-white.png";
-    selectedContactsEl.innerHTML += renderContactBubbleHtml(
-      getContactById(listItem.value)
-    );
-  } else {
-    listItem.querySelector("img").src = "./assets/img/checkbox-unchecked.svg";
-    selectedContactsEl
-      .getElementsByClassName("contact-bubble-" + listItem.value)[0]
-      .remove();
-    selectedContactIds.splice(selectedContactIds.indexOf(listItem.value), 1);
-  }
+  if (listItem.classList.contains("selected"))
+    handleSelectedContact(selectedContactsEl, listItem);
+  else handleDeselectedContacts(selectedContactsEl, listItem);
 }
 
-/**gets contact from contactlist by its Id
+/** When the list item is selected, this function adds the item's value to the selected contact IDs, changes the checkbox image to a checked state, and renders a contact bubble for the selected item */
+function handleSelectedContact(selectedContactsEl, listItem) {
+  selectedContactIds.push(listItem.value);
+  listItem.querySelector("img").src = "./assets/img/checkbox-checked-white.png";
+  selectedContactsEl.innerHTML += renderContactBubbleHtml(
+    getContactById(listItem.value)
+  );
+}
+
+/** When the list item is deselected, this function changes the checkbox image to an unchecked state, removes the associated contact bubble, and removes the item's value from the selected contact IDs */
+function handleDeselectedContacts(selectedContactsEl, listItem) {
+  listItem.querySelector("img").src = "./assets/img/checkbox-unchecked.svg";
+  selectedContactsEl
+    .getElementsByClassName("contact-bubble-" + listItem.value)[0]
+    .remove();
+  selectedContactIds.splice(selectedContactIds.indexOf(listItem.value), 1);
+}
+
+/** gets contact from contactlist by its Id
  * @param {number} id Id of contact in backend.
  */
 function getContactById(id) {
   return contactList.find((contact) => contact.id === id);
 }
 
-/**validates form and displays error messages if not successful. If successful, contact is added and form is closed */
+/** validates form and displays error messages if not successful. If successful, contact is added and form is closed */
 async function validateOverlayAddcontactForm(e) {
   const form = document.getElementById("overlay-add-contact-form");
-  let formIsValid = true;
+  let formIsValid = validateForm(form);
+
+  if (formIsValid) {
+    await addContactWithinTaskForm();
+    form.parentElement.close();
+    triggerDropdownArrowClick();
+  } else markFormAsInvalid(form);
+
+  e.preventDefault();
+}
+
+function validateForm(form) {
   const formElements = form.querySelectorAll("input, textarea, select");
+
   for (let i = 0; i < formElements.length; i++) {
     const formElement = formElements[i];
     formElement.checkValidity();
-    if (!formElement.validity.valid) formIsValid = false;
-    document.getElementById(`${formElement.id}-error`).textContent =
-      formElement.validationMessage;
+    if (formIsNotValid(formElement)) {
+      updateErrorContainer(formElement);
+      return false;
+    }
   }
-  e.preventDefault();
-  if (!formIsValid) form.classList.add("is-validated");
-  else {
-    await addContactWithinTaskForm();
-    form.parentElement.close();
-    document.getElementById("dropdown-arrow").dispatchEvent(new Event("click"));
-  }
+  return true;
+}
+
+function markFormAsInvalid(form) {
+  form.classList.add("is-validated");
+}
+
+/** Triggers a click event on the dropdown arrow */
+function triggerDropdownArrowClick() {
+  document.getElementById("dropdown-arrow").dispatchEvent(new Event("click"));
 }
 
 /**validates due date input to ensure it's neither empty nor the selected date is in the past
@@ -329,9 +304,8 @@ function validateAddTaskFormElements(formElements) {
         formIsValid = false;
       }
     } else {
-      document.getElementById(`${formElement.id}-error`).textContent =
-        formElement.validationMessage;
-      if (!formElement.validity.valid) {
+      updateErrorContainer(formElement);
+      if (formIsNotValid(formElement)) {
         formIsValid = false;
       }
     }
@@ -367,11 +341,9 @@ function handleCustomValidationForAddTask(formElement) {
  * @param {HTMLElement} formElement Category input element.
  */
 function validateCategoryInput(formElement) {
-  if (formElement.value === "Select task category") {
+  if (formElement.value === "Select task category")
     formElement.setCustomValidity("This field is required.");
-  } else {
-    formElement.setCustomValidity("");
-  }
+  else formElement.setCustomValidity("");
 }
 
 /** validates that priority is selected
@@ -439,17 +411,14 @@ function resetFilteredAssignedtoContacts(listItems) {
  * @param {NodeList} listItems li elements representing contacts.
  */
 function renderFilteredAssignedToContacts(searchTerm, listItems) {
-  if (searchTerm === "") {
-    resetFilteredAssignedtoContacts(listItems);
-  } else {
+  if (searchTerm === "") resetFilteredAssignedtoContacts(listItems);
+  else {
     const results = filterContactListByName(searchTerm);
     for (let i = 0; i < listItems.length; i++) {
       const listItem = listItems[i];
-      if (results.find((contact) => contact.id === listItem.value)) {
+      if (results.find((contact) => contact.id === listItem.value))
         listItem.style.display = "flex";
-      } else {
-        listItem.style.display = "none";
-      }
+      else listItem.style.display = "none";
     }
   }
 }

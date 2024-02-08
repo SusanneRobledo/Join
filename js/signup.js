@@ -38,17 +38,6 @@ function validateSignUpFormElements(form) {
   return formIsValid;
 }
 
-/** Condition for the invalid form Element */
-function formIsNotValid(formElement) {
-  return !formElement.validity.valid;
-}
-
-/** Updates the Container with the error message underneath the input field */
-function updateErrorContainer(formElement) {
-  let errorContainer = document.getElementById(`${formElement.id}-error`);
-  errorContainer.textContent = formElement.validationMessage;
-}
-
 /** Validates a single element of sign up form.
  * @param {HTMLElement} formElement Input element to be validated.
  */
