@@ -491,7 +491,6 @@ input {
 }
 
 .progress-bar {
-  /* width: 50%; adjust with JS later according to progress*/
   height: 0.5rem;
   align-self: stretch;
   border-radius: 1rem;
@@ -500,10 +499,10 @@ input {
 
 .card-footer {
   width: 100%;
-  /* display: flex;
-  justify-content: space-between; */
-  /* align-items: flex-end;
-  flex-grow: 1; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-grow: 1;
 }
 
 .profileBadges {
@@ -521,7 +520,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*justify-content: center;*/
+  justify-content: center;
   padding: 0 0.2rem;
 }
 
