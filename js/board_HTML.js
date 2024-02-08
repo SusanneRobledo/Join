@@ -196,3 +196,17 @@ function generateAssignedUserListItemHTML(contact) {
   html += `<span>${contact.name}<span></div>`;
   return html;
 }
+
+/**
+ * Generates HTML code to display the subtask item within the subtasks list on the larger card.
+ * Exchanges the Img by inserting the URL snippet "unchecked" or "checked" to get the correct img belonging to the subtask status.
+ * @param {string} srcImg - contains the value "checked" or "unchecked" for the img src.
+ * @param {string} subtask - The text content of the subtask.
+ * @returns {string} The generated HTML code for the subtask item.
+ */
+function generateSubtasksListHTML(srcImg, subtask) {
+  html = `<div class="subtask">`;
+  html += `<img src="./assets/img/checkbox-${srcImg}.svg" class="icon-checkbox checkbox ${srcImg}"/>`;
+  html += `<span>${subtask}<span></div>`;
+  return html;
+}

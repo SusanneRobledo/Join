@@ -64,7 +64,7 @@ function updateHTML(status, id) {
 function renderSmallCard() {
   showMobileMoveTaskButton();
   renderProgressSection();
-  renderAssignedBadges();
+  getAssignedBadges();
   renderPrio();
 }
 
@@ -221,25 +221,38 @@ function updateProgressBar(i) {
 /**
  * Renders the badge elements that indicate which contacts or users are assigned to the specific task.
  * retrieves the list of assigned contacts for the current task from the assignedTo property.
- * Iterates through the assignedContacts array for the current task and generates
- * the HTML Code for each assigned contact.
  */
-function renderAssignedBadges() {
+function getAssignedBadges() {
   for (let i = 0; i < filteredTasks.length; i++) {
     const filteredTask = filteredTasks[i];
     const badge = document.getElementById(`profileBadges-${filteredTask.id}`);
     const assignedContacts = filteredTask["assignedTo"];
     badge.innerHTML = "";
-    for (let j = 0; j < assignedContacts.length; j++) {
-      const assignedContact = assignedContacts[j];
-      if (j < 3) badge.innerHTML += generateBadgeHTML(assignedContact);
-      else if (j === 3)
-        badge.innerHTML += generateBadgeHTML({
-          color: "lightgrey",
-          initials: `+${assignedContacts.length - 3}`,
-        });
-    }
+    renderAssignedBadges(assignedContacts, badge);
   }
+}
+
+/** Iterates through the assignedContacts array for the current task and generates
+ * the HTML Code for each assigned contact. */
+function renderAssignedBadges(assignedContacts, badge) {
+  for (let j = 0; j < assignedContacts.length; j++) {
+    const assignedContact = assignedContacts[j];
+    if (j < 3) showFirstThreeAssignedContacts(badge, assignedContact);
+    else if (j === 3) showPlaceholderForMoreContacts(badge, assignedContacts);
+  }
+}
+
+/** If there are 3 or less contacts assigned, shows the badges for these contacts. */
+function showFirstThreeAssignedContacts(badge, assignedContact) {
+  badge.innerHTML += generateBadgeHTML(assignedContact);
+}
+
+/** If there are 3 or more contacts assigned to the task, it shows a grey placeholder with the number if how many more contacts are assigned to it. */
+function showPlaceholderForMoreContacts(badge, assignedContacts) {
+  badge.innerHTML += generateBadgeHTML({
+    color: "lightgrey",
+    initials: `+${assignedContacts.length - 3}`,
+  });
 }
 
 /**
@@ -321,9 +334,7 @@ function renderPrioLargeCard() {
 function renderAssignedUserList() {
   const list = document.getElementById("assignedSection");
   let html = "";
-
   const users = task["assignedTo"];
-
   for (let i = 0; i < users.length; i++) {
     const assignedUser = users[i];
     html += generateAssignedUserListItemHTML(assignedUser);
@@ -338,11 +349,10 @@ function renderAssignedUserList() {
 function renderSubtasksList() {
   const list = document.getElementById("subtaskList");
   list.innerHTML = "";
-
   const subtasks = task["subtasks"];
-  if (subtasks.length === 0) {
+  if (subtasks.length === 0)
     list.innerHTML = `<div class="subtask">No subtasks</div>`;
-  } else {
+  else {
     for (let i = 0; i < subtasks.length; i++) {
       const subtask = subtasks[i];
       let srcImg = getImgBySubtaskStatus(subtask);
@@ -378,49 +388,4 @@ async function updateSubtasksStatus(taskID) {
     else subtasks[i].status = "todo";
   }
   await setItemInBackend("taskList", JSON.stringify(taskList));
-}
-
-/**
- * Generates HTML code to display the subtask item within the subtasks list on the larger card.
- * Exchanges the Img by inserting the URL snippet "unchecked" or "checked" to get the correct img belonging to the subtask status.
- * @param {string} srcImg - contains the value "checked" or "unchecked" for the img src.
- * @param {string} subtask - The text content of the subtask.
- * @returns {string} The generated HTML code for the subtask item.
- */
-function generateSubtasksListHTML(srcImg, subtask) {
-  html = `<div class="subtask">`;
-  html += `<img src="./assets/img/checkbox-${srcImg}.svg" class="icon-checkbox checkbox ${srcImg}"/>`;
-  html += `<span>${subtask}<span></div>`;
-  return html;
-}
-
-///////////////////////////////////////////////////////////////////
-// SEARCH FUNCIONS
-
-/**Searches through all Tasks if one may be the one, were looking for. */
-function searchTask() {
-  let term = document.getElementById("findTask").value;
-  term = term.toLowerCase();
-  let foundTasks = [];
-
-  for (i in taskList) {
-    let taskTitle = taskList[i].title.toLowerCase();
-    let taskDesc = taskList[i].description.toLowerCase();
-    if (taskTitle.includes(term) || taskDesc.includes(term))
-      foundTasks.push(taskList[i].id);
-  }
-  hideNotSearchedTasks(foundTasks);
-}
-
-/**
- * Hides tasks, the user doesn't look for by checking, if the id of a task is inside of the foundTasks - Array.
- * @param {Array} foundTasks collection of ID´s from those Tasks, wich involve things, the user is looking for.
- */
-function hideNotSearchedTasks(foundTasks) {
-  for (task of taskList) {
-    if (foundTasks.indexOf(task.id) + 1)
-      //+1 because if the index is 0, it will be handled as 'false'!
-      document.getElementById(task.id).style.display = "flex";
-    else document.getElementById(task.id).style.display = "none";
-  }
 }
