@@ -130,10 +130,13 @@ async function getTemplates() {
 }
 
 /**
- * Checks, if Screentyoe still matches the actual loaded Template Versions.
+ * Checks, if templates are required for the current page and, if yes, if Screentype still matches the currently loaded Template Versions.
  */
 window.onresize = function () {
-  if (getScreenType() != loaded) {
+  if (
+    getScreenType() != loaded &&
+    document.querySelector("div[include-templates]") != null
+  ) {
     getTemplates();
   }
 };
@@ -149,20 +152,14 @@ async function getMatchingTemplate(toLoadID, toUnloadID) {
   const element = includeElement;
   file = element.getAttribute("include-templates"); // "assets/templates/desktop_template.html" or mobile_template.html
   let resp = await fetch(file);
-  if (resp.ok) {
-    element.innerHTML = await resp.text();
-  } else {
-    element.innerHTML = "Page not found";
-  }
+  if (resp.ok) element.innerHTML = await resp.text();
+  else element.innerHTML = "Page not found";
   unloadTemplate(toUnloadID);
   showInitialsHeader(userInitials);
   markCorrectMenuPoint();
   if (hideSiderMenu) {
-    if (screenType == "mobile" && loggedIn != true) {
-      hideMenusMobile();
-    } else {
-      hideMenusDesktop();
-    }
+    if (screenType == "mobile" && loggedIn != true) hideMenusMobile();
+    else hideMenusDesktop();
   }
 }
 
